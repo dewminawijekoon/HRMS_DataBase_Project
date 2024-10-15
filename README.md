@@ -12,7 +12,6 @@ Requirements:
 - Python3
   
 ```
-cd BackEnd
 //Enable running scripts
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
