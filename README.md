@@ -3,6 +3,7 @@
 ## Create FrontEnd Server
 ```
 cd FrontEnd
+npm install
 npm run dev
 ```
 
