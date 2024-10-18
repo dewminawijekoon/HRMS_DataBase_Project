@@ -34,3 +34,9 @@ pip install "fastapi[standard]" uvicorn
 deactivate
 ```
 
+## Tailwind CSS
+```
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
