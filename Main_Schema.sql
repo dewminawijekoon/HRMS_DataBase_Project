@@ -68,7 +68,7 @@ create table employee (
   marital_status varchar(40),
   number_of_dependents int,
   address varchar(40),
-  contact_number varchar(40)not null unique,
+  contact_number varchar(40)not null,
   business_email varchar(40),
   job_title varchar(40),
   department_id int,
@@ -98,9 +98,9 @@ create table employee_of_the_month(
 create table emergency_contact (
   emergency_contact_id varchar(40),
   name varchar(40),
-  nic varchar(40)not null unique,
+  nic varchar(40)not null,
   address varchar(40),
-  emergency_contact_number varchar(40)not null unique,
+  emergency_contact_number varchar(40)not null,
   primary key ( emergency_contact_id) ,
   foreign key ( emergency_contact_id) references employee(employee_id) on delete cascade on update cascade
 );
@@ -122,7 +122,7 @@ create table leave_request (
   request_date date,
   leave_start_date date,
   period_of_absence int,
-  reason_for_absence varchar(1000),
+  reason_for_absence varchar(40),
   type_of_leave varchar(40),
   request_status char,
   primary key (leave_request_id),
