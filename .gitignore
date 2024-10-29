@@ -1,9 +1,43 @@
+###BackEnd
+BackEnd/.idea
+BackEnd/.venv/
+BackEnd/.env.*
+BackEnd/__pycache__/
+BackEnd/qodana.yaml
+
+
+
+###FrontEnd
 # Node.js dependencies
-node_modules/
-**/node_modules/
+FrontEnd/node_modules/
+
+# Environment variables
+FrontEnd/.env
+FrontEnd/.env.*
+
+# npm package lock
+FrontEnd/package-lock.json
+
+#Vite config Files
+FrontEnd/vite.config.mjs
+
+#JS Config Files
+FrontEnd/jsconfig.node.json
+FrontEnd/jsconfig.json
+
+# Yarn
+FrontEnd/yarn.lock
+FrontEnd/.yarnrc.yml
+
+#prettier
+FrontEnd/.prettierrc
+FrontEnd/.prettierignore
+
+#eslint
+FrontEnd/.eslintrc
 
 #Python environment
-.venv/
+BackEnd/.venv/
 
 # Build output
 dist/
@@ -13,15 +47,7 @@ build/
 *.log
 logs/
 
-# Environment variables
-.env
-.env.*
 
-# npm package lock
-package-lock.json
-
-# Yarn lock
-yarn.lock
 
 # VSCode settings
 .vscode/
@@ -39,21 +65,4 @@ Thumbs.db
 *.bak
 *.pid
 
-# Other IDEs
-.idea/
-*.sublime-workspace
-*.sublime-project
 
-# Dependency directories
-backend/node_modules/
-frontend/node_modules/
-
-# Build directories for frontend/backend
-backend/dist/
-frontend/dist/
-backend/build/
-frontend/build/
-
-.history/
-
-pending.txt
