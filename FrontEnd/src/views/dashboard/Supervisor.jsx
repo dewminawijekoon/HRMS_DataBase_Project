@@ -93,7 +93,42 @@ const DashDefault = () => {
   };
   
   const getdashSalesData = async () =>{
-    //
+    try {
+      // Fetch data from the backend
+      const response = await fetch('http://localhost:8000/last_month_employee', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // Include token for authentication, if required
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+  
+      // If the response is okay, convert it to JSON
+      if (response.ok) {
+        const data = await response.json();
+        // Use the fetched data or set the initialApprovalList if data is empty
+        const dashData = data.length ? data : dashSalesData;
+        console.log(dashData);
+        if(leaveRequests=="null"){
+          console.log("No data");
+        }
+        else{
+          dashSalesData = dashData;
+        }
+
+        // Update state or UI with fetched data
+        // Example: setLeaveRequests(leaveRequests);
+      } else {
+        // Handle errors (e.g., 404, 403, etc.)
+        console.error('Failed to fetch leave requests:', response.status);
+      }
+    } catch (error) {
+      // Catch any network errors
+      console.error('Error fetching leave requests:', error);
+    } finally {
+      // Optionally, handle cleanup or UI state changes here
+    }
   }
   
 
@@ -111,8 +146,19 @@ const DashDefault = () => {
     });       
   };
 
+  const handleReject = (index,name) => {
+    /*
+    const updatedList = approvalList.filter((_, i) => i !== index); // Remove the rejected item from the list
+    setApprovalList(updatedList);
+    */
+    navigate('./leave-request-form');
+  };
+
+  const userName = localStorage.getItem('username');
+
   let tabcontent = (
     <React.Fragment>
+        
       {birthdaylist.map((data, index) => (
         <div className="d-flex friendlist-box align-items-center justify-content-center m-b-20" key={index}>
           <div className="m-r-10 photo-table flex-shrink-0">
@@ -136,6 +182,11 @@ const DashDefault = () => {
 
   return (
     <React.Fragment>
+      <Card className="mb-4">
+        <Card.Body>
+          <h4>Welcome Supervisor, {userName}!</h4>
+        </Card.Body>
+      </Card>
       <Row>
         <Col>
           <Card className="mb-4">
