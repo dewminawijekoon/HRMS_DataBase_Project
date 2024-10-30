@@ -52,6 +52,8 @@ const DashDefault = () => {
     console.log("this is a token", localStorage.getItem('token'));
   }, []);
 
+  const userName = localStorage.getItem('username');
+
   const getApprovalList = async () => {
     console.log("Token:", localStorage.getItem('token'));
     try {
@@ -149,6 +151,11 @@ const DashDefault = () => {
 
   return (
     <React.Fragment>
+      <Card className="mb-4">
+        <Card.Body>
+          <h4>Welcome Admin, {userName}!</h4>
+        </Card.Body>
+      </Card>
       <Row>
         {dashSalesData.map((data, index) => (
           <Col key={index} xl={6} xxl={4}>
