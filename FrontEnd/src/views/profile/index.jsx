@@ -81,31 +81,6 @@ const Profile = (props) => {
         }));
     };
 
-    const getmyprofiledata = async(user_name) => {
-        setIsSubmitting(true);
-        try {
-            const response = await fetch(`http://localhost:8000/employee/${user_name}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-            });
-            if (response.ok) {
-                const data = await response.json();
-                setEmployeeDetails(data);
-                console.log('Received success');
-                console.log(data);
-            } else {
-                console.error('Receive failed:', response.status);
-            }
-        } catch (error) {
-            console.log('Error occurred:', error);
-        } finally {
-            setIsSubmitting(false);
-        }
-    }
-
     const changepage = (value) => {
         setEdit(value);
     };

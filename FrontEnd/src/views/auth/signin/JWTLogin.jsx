@@ -41,7 +41,7 @@ const JWTLogin = () => {
         navigate('/Admin', { replace: true });
       }
       else if(data.role == 'supervisor'){
-        navigate('/Supervisor',{replace: true});
+        navigate('/supervisor',{replace: true});
       }
       else if(data.role == 'employee'){
         navigate('/Employee',{replace: true});

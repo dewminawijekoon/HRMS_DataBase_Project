@@ -157,7 +157,12 @@ const routes = [
       {
         exact: 'true',
         path: '/employees',
-        element: lazy(() => import('../views/employees'))
+        element: lazy(() => import('../views/employees/sup_employees'))
+      },
+      {
+        exact: 'true',
+        path: '/employees/profile',
+        element: lazy(() => import('../views/profile/sup_profile'))
       },
       {
         exact: 'true',
@@ -167,7 +172,7 @@ const routes = [
       {
         exact: true,
         path: '/leave-applications',
-        element: lazy(() => import('../views/leaveApplications/LeaveApplicationsTable'))
+        element: lazy(() => import('../views/leaveApplications/sup_leaveapplication'))
       },
       {
         // This directly points to the leave request form under /leave-applications
@@ -182,8 +187,8 @@ const routes = [
       },
       {
         exact: 'true',
-        path: '/profile',
-        element: lazy(() => import('../views/profile'))
+        path: '/myprofile',
+        element: lazy(() => import('../views/myprofile/sup_profile'))
       }
     ]
   }
