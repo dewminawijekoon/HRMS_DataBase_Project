@@ -240,14 +240,6 @@ const Profile = (props) => {
                           </Form>
                       </Card.Body>
                   </Card>
-                  <Card className="mx-auto shadow-lg" lg={6} md={8} style={{ width: '85%', margin: '30px' }}>
-                      <Card.Header>Change Details</Card.Header>
-                      <Card.Body id='card-1' style={{ margin: '30px' }}>
-                          <Button variant="primary" size="sm" className="w-100" onClick={() => changepage('true')}>
-                              Edit
-                          </Button>
-                      </Card.Body>
-                  </Card>
               </div>
           </div> 
         </>
