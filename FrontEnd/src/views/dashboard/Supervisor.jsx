@@ -18,6 +18,9 @@ const DashDefault = () => {
     { name: 'Eshin Menusha', dept: 'HR' },
   ];
 
+  const initialApprovalList = [];
+  
+
   const [getemloyeemonth, setgetemloyeemonth] = useState([
     { name: 'Bhanuka Botheju', dept: 'HR' },
     { name: 'Kasun Chamara', dept: 'HR' },
@@ -87,71 +90,38 @@ const DashDefault = () => {
   
   
 
-  const getApprovalList = async () => {
-    console.log("this is token")
-    console.log(localStorage.getItem('token'));
-    try {
-      // Fetch data from the backend
-      const response = await fetch('http://localhost:8000/supervisor/leave_requests', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // Include token for authentication, if required
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-  
-      // If the response is okay, convert it to JSON
-      if (response.ok) {
-        const data = await response.json();
-        // Use the fetched data or set the initialApprovalList if data is empty
-        const leaveRequests = data.length ? data : initialApprovalList;
-        console.log(leaveRequests);
-        if(leaveRequests=="null"){
-          console.log("No data");
-        }
-        else{
-          initialApprovalList = leaveRequests;
-        }
+  // Define initialApprovalList as an empty array at the component leve
 
-        // Update state or UI with fetched data
-        // Example: setLeaveRequests(leaveRequests);
+const getApprovalList = async () => {
+  console.log("this is token:", localStorage.getItem('token'));
+  try {
+    // Fetch data from the backend
+    const response = await fetch('http://localhost:8000/supervisor/leave_requests', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const leaveRequests = data.length ? data : initialApprovalList;
+      console.log(leaveRequests);
+
+      if (leaveRequests === "null") {
+        console.log("No data");
       } else {
-        // Handle errors (e.g., 404, 403, etc.)
-        console.error('Failed to fetch leave requests:', response.status);
+        setApprovalList(leaveRequests); // Use setApprovalList to update the state
       }
-    } catch (error) {
-      // Catch any network errors
-      console.error('Error fetching leave requests:', error);
-    } finally {
-      // Optionally, handle cleanup or UI state changes here
+    } else {
+      console.error('Failed to fetch leave requests:', response.status);
     }
-  };
-
-  const getEmployeeofthemonth = async() => {
-    try {
-      const response = await fetch('http://localhost:8000/employee_of_month', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setgetemloyeemonth(data);
-      } else {
-        console.error('Failed to fetch leave requests:', response.status);
-      }
-    } catch (error) {
-      console.error('Error fetching leave requests:', error);
-    }
+  } catch (error) {
+    console.error('Error fetching leave requests:', error);
   }
+};
 
-  const handleApprove = (index) => {
-    navigate('./leave-request-form', { state: { details_list: approvalList[index] } });
-  };
 
   const renderTabContent = () => (
     <React.Fragment>
