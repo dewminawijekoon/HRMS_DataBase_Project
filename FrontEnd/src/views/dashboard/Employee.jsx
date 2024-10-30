@@ -24,6 +24,33 @@ const DashEmployee = () => {
 
   const navigate = useNavigate();
 
+  const getsetdashboarddata = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/dashboard_data', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        const data = responseData.data; // Access the data property
+  
+        // Ensure data is an array before setting it to dashboard
+        setdashboard(Array.isArray(data) ? data : []);
+        console.log("dashboard data received", data);
+      } else {
+        console.error('Failed to fetch dashboard data:', response.status);
+        setdashboard([]); // Set as empty array in case of an error
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      setdashboard([]); // Set as empty array in case of an error
+    }
+  };
+
 
 
   const tabContent = (
