@@ -591,6 +591,7 @@ begin
 end //
 delimiter ;
 
+-- dashboard informations
 delimiter //
 create procedure get_leave_count()
 begin
@@ -598,14 +599,13 @@ begin
   select count(employee.employee_id) 
   into count_of_employee
   from employee ;
-  select count(leave_request_id) as get_leave_count ,count(leave_request_id)/count_of_employee as get_leave_count_presentage
+  select count(leave_request_id) as amount ,count(leave_request_id)/count_of_employee as value
   from leave_request 
   where request_status = 'A'  
   and (leave_start_date <= current_date())
   and (date_add(leave_start_date, interval period_of_absence day) > current_date());
 end //
 delimiter ;
-
 
 delimiter //
 create procedure get_parttime_employee_count_presentage()
@@ -614,7 +614,7 @@ begin
   select count(employee.employee_id) 
   into count_of_employee
   from employee ;
-  select count(employee.employee_id) as part_time_employee_count , count(employee.employee_id)/count_of_employee as part_time_employee_presentage
+  select count(employee.employee_id) as amount , count(employee.employee_id)/count_of_employee as value
   from employee 
   inner join employee_position using(job_title)
   where employee_position.employee_status = 'part-time';
@@ -628,12 +628,13 @@ begin
   select count(employee.employee_id) 
   into count_of_employee
   from employee ;
-  select count(employee.employee_id) as full_time_employee_count , count(employee.employee_id)/count_of_employee as full_time_employee_presentage
+  select count(employee.employee_id) as amount , count(employee.employee_id)/count_of_employee as value
   from employee 
   inner join employee_position using(job_title)
   where employee_position.employee_status = 'full-time';
 end //
 delimiter ;
+
 
 -- for report purpose
 delimiter //
