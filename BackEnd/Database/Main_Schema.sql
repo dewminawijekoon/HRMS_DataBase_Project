@@ -1,5 +1,4 @@
 -- create database tables
-
 drop database if exists hrms;
 create database hrms;
 use hrms;
@@ -127,7 +126,7 @@ create table leave_request (
   request_date date,
   leave_start_date date,
   period_of_absence int,
-  reason_for_absence varchar(1000),
+  reason_for_absence varchar(40),
   type_of_leave varchar(40),
   request_status char,
   primary key (leave_request_id),

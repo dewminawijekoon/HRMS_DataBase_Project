@@ -4,13 +4,13 @@ call create_user_account('Umesha','Umesha','7364528d-ce36-4d7f-a0aa-7cd084c077f3
 call add_employee('e10bfb2f-9cb9-4278-ac8c-952ee4428f02', 'Christopher','Ranasinghe', '1963-02-24', '929054321V', 'Male','Married', 2, '48, samagi road, Maharagema.','0751234567','Christopher.jupiter@company.com','HR assistent','Full-time','HR', 'Headquarters',NULL,'Shiranshi','992919190V','48, samagi road, Maharagema.','0710023452');
 call create_user_account('Christopher','Christopher','e10bfb2f-9cb9-4278-ac8c-952ee4428f02','Admin');
 
-call add_employee('7b163c45-ce7b-422f-93d9-d72abb4af5ae', 'Araliya','Perera', '1964-01-27', '989654321V', 'Male','Single', 0, '489, parakrame road, kottawa.','0751204567','Araliya.jupiter@company.com','Software enginner','Full-time','IT', 'Headquarters',NULL,'Kumara','923222222V','489, parakrame road, kottawa.','0718152643');
+call add_employee('7b163c45-ce7b-422f-93d9-d72abb4af5ae', 'Araliya','Perera', '1944-01-27', '989654321V', 'Male','Single', 0, '489, parakrame road, kottawa.','0751204567','Araliya.jupiter@company.com','Software enginner','Full-time','IT', 'Headquarters',NULL,'Kumara','923222222V','489, parakrame road, kottawa.','0718152643');
 call create_user_account('Araliya','Araliya','7b163c45-ce7b-422f-93d9-d72abb4af5ae','Supervisor');
 call add_employee('8c163c45-ce7b-422f-93d9-d72abb4af5ae', 'Nimal','Fernando', '1965-02-28', '989654322V', 'Male','Single', 0, '490, parakrame road, kottawa.','0751204568','Nimal.jupiter@company.com','Software enginner','Full-time','IT', 'Headquarters',NULL,'Kumara','923222223V','490, parakrame road, kottawa.','0718152644');
 call create_user_account('Nimali','Nimali','8c163c45-ce7b-422f-93d9-d72abb4af5ae','Supervisor');
-call add_employee('9d163c45-ce7b-422f-93d9-d72abb4af5ae', 'Sunil','Perera', '1966-03-29', '989654323V', 'Male','Single', 0, '491, parakrame road, kottawa.','0751204569','Sunil.jupiter@company.com','Software enginner','Full-time','IT', 'Headquarters',NULL,'Kumara','923222224V','491, parakrame road, kottawa.','0718152645');
+call add_employee('9d163c45-ce7b-422f-93d9-d72abb4af5ae', 'Sunil','Perera', '1966-03-29', '989654323V', 'Male','Single', 0, '491, parakrame road, kottawa.','0751204569','Sunil.jupiter@company.com','QA Engineer','Full-time','Main', 'Headquarters',NULL,'Kumara','923222224V','491, parakrame road, kottawa.','0718152645');
 call create_user_account('Sunili','Sunili','9d163c45-ce7b-422f-93d9-d72abb4af5ae','Supervisor');
-call add_employee('ad163c45-ce7b-422f-93d9-d72ab74af5ae', 'Kamal','Silva', '1967-04-30', '989654324V', 'Male','Single', 0, '492, parakrame road, kottawa.','0751204570','Kamal.jupiter@company.com','Software enginner','Full-time','IT', 'Headquarters',NULL,'Kumara','923222225V','492, parakrame road, kottawa.','0718152646');
+call add_employee('ad163c45-ce7b-422f-93d9-d72ab74af5ae', 'Kamal','Silva', '1967-04-30', '989654324V', 'Male','Single', 0, '492, parakrame road, kottawa.','0751204570','Kamal.jupiter@company.com','QA Engineer','Full-time','Main', 'Headquarters',NULL,'Kumara','923222225V','492, parakrame road, kottawa.','0718152646');
 call create_user_account('Kamali','Kamali','ad163c45-ce7b-422f-93d9-d72ab74af5ae','Supervisor');
 
 call add_employee('0ba6900a-c6bd-40ad-bd40-d335fbd42f8b', 'Nayana','Jayarathna', '1968-01-24', '989653329V', 'Female','Single', 0, '400,piliyandala road,pannipitiya.','0751288490','Aayana.jupiter@company.com','Worker','Full-time','IT', 'Headquarters',NULL,'Vibawa','922280690V','400,piliyandala road,pannipitiya.','0711214680');
@@ -69,15 +69,15 @@ call add_employee('1ca6900a-c6bd-40ad-bd40-d335fbd42f7w', 'Gagani','Senanayake',
 call create_user_account('Gagani', 'Gagani', '1ca6900a-c6bd-40ad-bd40-d335fbd42f7w', 'Worker');
 call add_employee('2ca6900a-c6bd-40ad-bd40-d335fbd42f7x', 'Kasungi','Wijesinghe', '1992-07-10', '907654342V', 'Male', 'Married', 2, '789, negombo road, negombo.', '0718765453', 'kasun.wijesinghe@company.com', 'Worker', 'Full-time', 'Main', 'Headquarters', NULL, 'Ranjith', '922765453V', '789, negombo road, negombo.', '0787654531');
 call create_user_account('Kasungi', 'Kasungi', '2ca6900a-c6bd-40ad-bd40-d335fbd42f7x', 'Worker');
-call add_employee('3ca6900a-c6bd-40ad-bd40-d335fbd42f7y', 'Nuwanthika','Perera', '1993-08-15', '907654343V', 'Male', 'Single', 0, '123, kurunegala road, kurunegala.', '0718765454', 'nuwan.perera@company.com', 'Worker', 'Full-time', 'Main', 'Headquarters', NULL, 'Kamal', '922765454V', '123, kurunegala road, kurunegala.', '0787654541');
+call add_employee('3ca6900a-c6bd-40ad-bd40-d335fbd42f7y', 'Nuwanthika','Perera', '1993-08-15', '907654343V', 'Male', 'Single', 0, '123, kurunegala road, kurunegala.', '0718765454', 'nuwani.perera@company.com', 'Worker', 'Full-time', 'Main', 'Headquarters', NULL, 'Kamal', '922765454V', '123, kurunegala road, kurunegala.', '0787654541');
 call create_user_account('Nuwanthika', 'Nuwanthika', '3ca6900a-c6bd-40ad-bd40-d335fbd42f7y', 'Worker');
-call add_employee('4ca6900a-c6bd-40ad-bd40-d335fbd42f7z', 'Dinekshi','Fernando', '1994-09-20', '907654344V', 'Male', 'Married', 1, '456, colombo road, colombo.', '0718765455', 'ruwan.fernando@company.com', 'Worker', 'Full-time', 'Main', 'Headquarters', NULL, 'Nimal', '922765455V', '456, colombo road, colombo.', '0787654551');
+call add_employee('4ca6900a-c6bd-40ad-bd40-d335fbd42f7z', 'Dinekshi','Fernando', '1994-09-20', '907654344V', 'Male', 'Married', 1, '456, colombo road, colombo.', '0718765455', 'ruwani.fernando@company.com', 'Worker', 'Full-time', 'Main', 'Headquarters', NULL, 'Nimal', '922765455V', '456, colombo road, colombo.', '0787654551');
 call create_user_account('Dinekshi', 'Dinekshi', '4ca6900a-c6bd-40ad-bd40-d335fbd42f7z', 'Worker');
-call add_employee('5ca6900a-c6bd-40ad-bd40-d335fbd42f7a', 'Susantha','Wijesinghe', '1995-10-25', '907654345V', 'Male', 'Single', 0, '789, kandy road, kandy.', '0718765456', 'sunil.wijesinghe@company.com', 'Worker', 'Full-time', 'Main', 'Headquarters', NULL, 'Ranjith', '922765456V', '789, kandy road, kandy.', '0787654561');
+call add_employee('5ca6900a-c6bd-40ad-bd40-d335fbd42f7a', 'Susantha','Wijesinghe', '1995-10-25', '907654345V', 'Male', 'Single', 0, '789, kandy road, kandy.', '0718765456', 'sunili.wijesinghe@company.com', 'Worker', 'Full-time', 'Main', 'Headquarters', NULL, 'Ranjith', '922765456V', '789, kandy road, kandy.', '0787654561');
 call create_user_account('Susantha', 'Susantha', '5ca6900a-c6bd-40ad-bd40-d335fbd42f7a', 'Worker');
 
 -- employee create leave request
-call create_leave_request('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','2024-10-31',5,'Medical Leave','casual');
+call create_leave_request('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','2024-10-31',100,'Medical Leave','annual');
 call create_leave_request('0ba6900a-c6bd-40ad-bd40-d335fbd42f8b','2024-10-31',5,'Medical Leave','casual');
 call create_leave_request('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','2024-10-31',5,'Medical Leave','casual');
 call create_leave_request('5ca6900a-c6bd-40ad-bd40-d335fbd42f7a','2024-10-31',5,'Trip','annual');
@@ -91,7 +91,7 @@ call evaluate_leave_request(1,'A');
 call evaluate_leave_request(2,'R');
 
 -- delete leave request
-call delete_request(3);
+call delete_request(1);
 
 -- get employee id by username
 call get_employee_id_by_username('Upuli');
@@ -154,6 +154,8 @@ call supervisors_details();
 call employee_team_for_supervisor('7b163c45-ce7b-422f-93d9-d72abb4af5ae');
 
 call get_employee_other_details('7b163c45-ce7b-422f-93d9-d72abb4af5ae');
+
+call searching_employees(null, null, null, 'Male', null, null, 'main', null);
 
 
 

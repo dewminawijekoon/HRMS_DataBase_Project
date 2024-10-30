@@ -1,4 +1,5 @@
 -- add new employee
+drop procedure if exists add_employee;
 delimiter //
 create procedure add_employee (
     in employee_id varchar(40),
@@ -11,15 +12,15 @@ create procedure add_employee (
     in number_of_dependents int,
     in address varchar(40),
     in contact_number varchar(40),
-    in business_email varchar(40),
+    in p_business_email varchar(40),
     in p_job_title varchar(40),
-	  in p_employee_status varchar(40),
+	in p_employee_status varchar(40),
     in dept_name varchar(40),
     in brch_name varchar(40),
     in p_profile_photo varchar(40),
-	  in emergency_contact_name varchar(40),
-	  in emergency_contact_nic varchar(40),
-	  in emergency_contact_address varchar(40),
+	in emergency_contact_name varchar(40),
+	in emergency_contact_nic varchar(40),
+	in emergency_contact_address varchar(40),
     in emergency_contact_number varchar(40)
 )
 begin
@@ -40,6 +41,21 @@ begin
     end;
     
     start transaction;
+    
+    if exists (select 1 from employee where employee_nic = nic) then
+		select  'Error: Business email must be unique';
+        signal sqlstate '45000' set message_text = 'Error: NIC must be unique';
+    end if;
+
+    if exists (select 1 from employee where business_email = p_business_email) then
+		select  'Error: Business email must be unique';
+        signal sqlstate '45000' set message_text = 'Error: Business email must be unique';
+    end if;
+    
+    if timestampdiff(YEAR, birthday, CURDATE()) < 18 then
+        select 'Error: Employee must be at least 18 years old';
+        signal sqlstate '45000' set message_text = 'Error: Employee must be at least 18 years old';
+    end if;
 
     select department_id into p_department_id from department where department_name = dept_name;
     select branch_id into p_branch_id from branch where branch_name = brch_name;
@@ -52,29 +68,28 @@ begin
 
     insert into employee (
         employee_id, first_name, last_name, birthday, employee_nic, gender, marital_status, number_of_dependents,
-        address, contact_number, business_email, job_title, department_id, branch_id, profile_photo
-    ) 
-    values (
-        employee_id, first_name, last_name, birthday, nic, gender, marital_status, number_of_dependents,
-        address, contact_number, business_email, p_job_title, p_department_id, p_branch_id, p_profile_photo
-    );
-
+        address, contact_number, business_email, job_title, department_id, branch_id, profile_photo) 
+    values (employee_id, first_name, last_name, birthday, nic, gender, marital_status, number_of_dependents,
+		address, contact_number, p_business_email, p_job_title, p_department_id, p_branch_id, p_profile_photo);
+        
     insert into emergency_contact (emergency_contact_id, name, nic, address, emergency_contact_number)
-    values (employee_id, emergency_contact_name, emergency_contact_nic, emergency_contact_address, emergency_contact_number);
+	values (employee_id, emergency_contact_name, emergency_contact_nic, emergency_contact_address, emergency_contact_number);
     
-    insert into leave_count_record (
-        employee_id, leave_type_id, annual_leave_remaining, casual_leave_remaining, maternity_leave_remaining, nopay_leave_remaining
-    )
+    insert into leave_count_record (employee_id, leave_type_id, annual_leave_remaining, casual_leave_remaining,
+		maternity_leave_remaining, nopay_leave_remaining)
     values (employee_id, p_leave_type_id, p_annual_leave_count, p_casual_leave_count, p_maternity_leave_count, p_nopay_leave_count);
     
     commit;
+    select 'Employee added successfully.';
+
 end //
 delimiter ;
 
 -- create user account
+drop procedure if exists create_user_account;
 delimiter //
 create procedure create_user_account(
-    in username varchar(40),
+    in p_username varchar(40),
     in password varchar(255),
     in p_employee_id varchar(40),
     in access_level varchar(40)
@@ -88,31 +103,104 @@ begin
     
     start transaction;
     
+    if exists (select 1 from users where p_username = username) then
+		select  'Error: your Username is already taken , try another one';
+        signal sqlstate '45000' set message_text = 'Error: Username must be unique try another one';
+    end if;
+    
     if access_level = 'Admin' then
         insert into users (username, password, employee_id)
-		values (username, password, p_employee_id);
-        insert into user_access (username, is_admin, is_supervisor) values (username, true, true);
+		values (p_username, password, p_employee_id);
+        insert into user_access (username, is_admin, is_supervisor) values (p_username, true, true);
         
     elseif access_level = 'Supervisor' then
         insert into users (username, password, employee_id)
-		values (username, password, p_employee_id);
-        insert into user_access (username, is_admin, is_supervisor) values (username, false, true);
+		values (p_username, password, p_employee_id);
+        insert into user_access (username, is_admin, is_supervisor) values (p_username, false, true);
         insert into supervisor(supervisor_id, employee_id, date) 
 		values((select employee_id from employee where job_title = 'HR assistent'), p_employee_id, curdate());
         
     else
         insert into users (username, password, employee_id)
-		values (username, password, p_employee_id);
-        insert into user_access (username, is_admin, is_supervisor) values (username, false, false);
+		values (p_username, password, p_employee_id);
+        insert into user_access (username, is_admin, is_supervisor) values (p_username, false, false);
         insert into supervisor (supervisor_id, employee_id, date)
 		values (generate_supervisor(), p_employee_id, curdate());
     end if;
     
     commit;
+    select 'User account create successfully';
 end;
 //
 delimiter ;
 
+-- create leave request
+drop procedure if exists create_leave_request;
+delimiter //
+create procedure create_leave_request(
+    in p_employee_id varchar(40),   
+    in p_leave_start_date date,
+    in p_period_of_absence varchar(40),
+    in p_reason_for_absence varchar(40),
+    in p_type_of_leave varchar(40)
+)
+begin
+    declare curr_date date;
+    declare p_supervisor_id varchar(40);
+    declare leave_remaining varchar(40);
+    declare existing_request_id varchar(40);
+    declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while creating the leave request';
+    end;
+    
+    start transaction;
+
+    set curr_date = curdate();
+    
+    select supervisor_id
+    into p_supervisor_id
+    from supervisor 
+    where employee_id = p_employee_id;
+    
+    if (select count(employee_id) from leave_request where employee_id = p_employee_id)<10 then
+		if p_type_of_leave = 'annual' and (select annual_leave_remaining from leave_count_record where employee_id = p_employee_id) >= p_period_of_absence then
+			insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
+			values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
+			select 'Sucessfully create leave request' as message;
+		elseif p_type_of_leave = 'casual' and (select casual_leave_remaining from leave_count_record where employee_id = p_employee_id) >= p_period_of_absence then
+			insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
+			values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
+			select 'Sucessfully create leave request' as message;
+		elseif p_type_of_leave = 'maternity' and (select maternity_leave_remaining from leave_count_record where employee_id = p_employee_id) >= p_period_of_absence then
+			insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
+			values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
+			select 'Sucessfully create leave request' as message;
+		elseif p_type_of_leave = 'nopay' and (select nopay_leave_remaining from leave_count_record where employee_id = p_employee_id) >= p_period_of_absence then
+			insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
+			values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
+			select 'Sucessfully create leave request' as message;
+		else
+			 select 'Insufficient leave balance for selected category' as message;
+		end if;
+		 if exists (select 1 from leave_request where employee_id = p_employee_id and (request_status = 'A' or request_status = 'R')
+					and  date_add( p_leave_start_date, interval p_period_of_absence day) < current_date() ) then
+			select leave_request_id into existing_request_id 
+			from leave_request 
+			where employee_id = p_employee_id and (request_status = 'A' or request_status = 'R')
+			limit 1;
+			
+			delete from leave_request where leave_request_id = existing_request_id;
+		end if;
+	else 
+		select 'limit exceed try again later' as message;
+	end if;
+    
+    commit;
+
+end //
+delimiter ;
 
 -- show leave request
 delimiter //
@@ -128,57 +216,9 @@ begin
 end //
 delimiter ;
 
--- create leave request
-delimiter //
-create procedure create_leave_request(
-    in p_employee_id varchar(40),   
-    in p_leave_start_date date,
-    in p_period_of_absence varchar(40),
-    in p_reason_for_absence varchar(40),
-    in p_type_of_leave varchar(40)
-)
-begin
-    declare curr_date date;
-    declare p_supervisor_id varchar(40);
-    declare leave_remaining varchar(40);
-    declare exit handler for sqlexception 
-    begin
-        rollback;
-        select 'An error occurred while processing the leave request';
-    end;
-    
-    start transaction;
-
-    set curr_date = curdate();
-    
-    select supervisor_id
-    into p_supervisor_id
-    from supervisor 
-    where employee_id = p_employee_id;
-    
-    if p_type_of_leave = 'annual' and (select annual_leave_remaining from leave_count_record where employee_id = p_employee_id) > p_period_of_absence then
-        insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
-        values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
-        
-    elseif p_type_of_leave = 'casual' and (select casual_leave_remaining from leave_count_record where employee_id = p_employee_id) > p_period_of_absence then
-        insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
-        values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
-        
-    elseif p_type_of_leave = 'maternity' and (select maternity_leave_remaining from leave_count_record where employee_id = p_employee_id) > p_period_of_absence then
-        insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
-        values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
-        
-    elseif p_type_of_leave = 'nopay' and (select nopay_leave_remaining from leave_count_record where employee_id = p_employee_id) > p_period_of_absence then
-        insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
-        values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
-    end if;
-
-    commit;
-
-end //
-delimiter ;
 
 -- evaluate leave request
+drop procedure if exists evaluate_leave_request;
 delimiter //
 create procedure evaluate_leave_request(
     in p_leave_id varchar(40),
@@ -189,6 +229,13 @@ begin
     declare no_of_days int;
     declare p_employee_id varchar(40);
     
+    declare exit handler for sqlexception
+    begin
+        rollback;
+        signal sqlstate '45000' set message_text = 'Error occur in leave request evaluation';
+    end;
+    
+    start transaction;
 	select employee_id
     into p_employee_id
     from leave_request
@@ -228,6 +275,9 @@ begin
         set nopay_leave_remaining = nopay_leave_remaining - no_of_days
         where employee_id = p_employee_id;
     end if;
+    commit;
+    select 'Successfully evaluate leave request';
+    
 end //
 delimiter ;
 
@@ -265,7 +315,9 @@ begin
 end //
 delimiter ;
 
+
 -- add organization
+drop procedure if exists add_organization;
 delimiter //
 create procedure add_organization(
     in p_field varchar(40),
@@ -273,17 +325,25 @@ create procedure add_organization(
 )
 begin    
 	declare p_branch_id  varchar(40);
-    
+    declare exit handler for sqlexception
+    begin
+        rollback;
+        signal sqlstate '45000' set message_text = 'Error occur in leave request evaluation';
+    end;
 	select branch_id
     into p_branch_id
     from branch
     where branch_name = p_main_branch;
     
     insert into organization(field,main_branch_id) values(p_field,p_branch_id);
+    commit;
+    select 'Organization added successfully';
 end //
 delimiter ;
 
+
 -- detele employee
+drop procedure if exists delete_employee;
 delimiter //
 create procedure delete_employee(
     in p_employee_id varchar(40),
@@ -303,11 +363,14 @@ begin
     end if;
 
     commit;
+    select 'Employee delete successfully';
 
 end //
 delimiter ;
 
+
 -- customize employee record
+drop procedure if exists customize_employee_record;
 delimiter //
 create procedure customize_employee_record(
     in p_organization varchar(40),
@@ -315,6 +378,13 @@ create procedure customize_employee_record(
 )
 begin    
 	declare p_organization_id  varchar(40);
+    declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while adding customize employee record';
+    end;
+
+    start transaction;
     
 	select organization_id
     into p_organization_id
@@ -324,10 +394,15 @@ begin
     insert into custom_employee_record(custom_attribute_name) values(p_custom_attribute_name);
     update organization set  custom_employee_record_id = (select custom_employee_record_id from custom_employee_record order by custom_employee_record_id desc limit 1)
     where organization_id =p_organization_id;
+    
+    commit;
+    select 'customize employee record added sucessfully';
+    
 end //
 delimiter ;
 
 -- customize employee attribute
+drop procedure if exists customize_employee_attribute;
 delimiter //
 create procedure customize_employee_attribute(
     in p_employee_id varchar(40),
@@ -336,6 +411,13 @@ create procedure customize_employee_attribute(
 )
 begin    
 	declare p_custom_attribute_id  varchar(40);
+    declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while adding employee attribute';
+    end;
+
+    start transaction;
     
 	select custom_employee_record_id
     into p_custom_attribute_id
@@ -345,11 +427,14 @@ begin
     insert into custom_attribute(value,employee_id) values(p_value,p_employee_id);
     update custom_employee_record set custom_attribute_id = (select custom_attribute_id from custom_attribute order by custom_attribute_id desc limit 1)
     where custom_employee_record_id = p_custom_attribute_id;
+    
+    commit;
+    select 'Employee attribute added sucessfully';
 end //
 delimiter ;
-drop procedure if exists update_employee;
 
 -- update employee details
+drop procedure if exists update_employee;
 delimiter //
 create procedure update_employee (
     in p_employee_id varchar(40),
@@ -435,11 +520,32 @@ begin
     where emergency_contact_id = p_employee_id;
 
     commit;
-
+	select 'Successfully updated employee details';
 end //
 delimiter ;
 
--- customize employee attribute
+-- delete leave request
+drop procedure if exists delete_request;
+delimiter //
+create procedure delete_request(
+    in p_leave_id varchar(40)
+)
+begin    
+	declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while deleting leave request';
+    end;
+    
+    start transaction;
+	delete from leave_request where leave_request_id =p_leave_id and request_status = 'P';
+    commit;
+	select 'Leave request delete successfully';
+    
+end //
+delimiter ;
+
+--  admin checker
 delimiter //
 create procedure is_admin(
     in p_username varchar(40)
@@ -451,15 +557,6 @@ begin
 end //
 delimiter ;
 
--- delete leave request
-delimiter //
-create procedure delete_request(
-    in p_leave_id varchar(40)
-)
-begin    
-	delete from leave_request where leave_request_id =p_leave_id and request_status = 'P';
-end //
-delimiter ;
 
 -- employeen team
 delimiter //
@@ -607,59 +704,31 @@ end //
 delimiter ;
 
 -- login time add
+drop procedure if exists login_update;
 delimiter //
 create procedure login_update(
     in p_username varchar(40)
 )
 begin    
+	declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while updating login time';
+    end;
 	update users
     set last_login_date = current_date()
     where username = p_username;
+    commit;
+    select 'login time update sucessfully';
+    
 end //
 delimiter ;
 
-/*
--- select all details entered
-delimiter //
-create procedure select_employee_details (
-    in p_employee_id varchar(40)
-)
-begin
-    select
-        employee.employee_id,
-        employee.first_name,
-        employee.last_name,
-        employee.birthday,
-        employee.employee_nic,
-        employee.gender,
-        employee.marital_status,
-        employee.number_of_dependents,
-        employee.address,
-        employee.contact_number,
-        employee.business_email,
-        employee.job_title,
-        employee_position.employee_status,
-        department.department_name,
-        branch.branch_name,
-		    employee.profile_photo,
-        emergency_contact.name,
-        emergency_contact.nic,
-        emergency_contact.address,
-        emergency_contact.emergency_contact_number
-    from employee 
-    left join department using(department_id)
-    left join branch using (branch_id)
-    left join emergency_contact on employee.employee_id = emergency_contact.emergency_contact_id
-    left join employee_position using (job_title)
-    where employee.employee_id = p_employee_id;
-end //
-delimiter ;
-*/
 -- supervisors details
 delimiter //
 create procedure supervisors_details()
 begin    
-    	select employee.employee_id,employee.first_name,employee.last_name
+	select employee.employee_id,employee.first_name,employee.last_name
 	from  users
 	join  employee using (employee_id)
 	join  user_access using (username)
@@ -703,7 +772,7 @@ begin
         employee_position.employee_status,
         department.department_name,
         branch.branch_name,
-		    employee.profile_photo,
+		employee.profile_photo,
         emergency_contact.name,
         emergency_contact.nic,
         emergency_contact.address,
@@ -827,3 +896,38 @@ begin
     end if;
 end //
 delimiter ;
+
+-- employee search
+delimiter //
+create procedure searching_employees(
+    in p_employee_id varchar(40),
+    in p_first_name varchar(40),
+    in p_last_name varchar(40),
+    in p_gender varchar(40),
+    in p_marital_status varchar(40),
+    in p_job_title varchar(40),
+    in dept_name varchar(40),
+    in brch_name varchar(40)
+)
+begin
+	declare p_department_id int;
+    declare p_branch_id int;
+	select department_id into p_department_id from department where department_name = dept_name;
+    select branch_id into p_branch_id from branch where branch_name = brch_name;
+    select * 
+    from employee
+    where (p_employee_id is null or employee_id = p_employee_id)
+      and (p_first_name is null or first_name = p_first_name)
+      and (p_last_name is null or last_name = p_last_name)
+      and (p_gender is null or gender = p_gender)
+      and (p_marital_status is null or marital_status = p_marital_status)
+      and (p_job_title is null or job_title = p_job_title)
+      and (p_department_id is null or department_id = p_department_id)
+      and (p_branch_id is null or branch_id = p_branch_id);
+end //
+delimiter ;
+
+
+
+
+
