@@ -57,25 +57,38 @@ Employees are structured with various positions and statuses:
 | Software Engineer  | Full-time         |
 | Worker             | Full-time         |
 
-## Getting Started
+## Main Access Levels
 
-### Prerequisites
-- Database: MySQL or any SQL-compliant RDBMS.
-- Sample data: Initial employee and organization data included in SQL scripts.
+1. **Admin**:
+   - Full system access, including management and configuration.
+   - Responsible for creating the first HR manager and other users.
+   - Can manage all system settings, employee records, and permissions.
+
+2. **Supervisor**:
+   - Limited management access.
+   - Can approve or deny leave requests from subordinates.
+   - Able to view and update subordinate information but has restricted access to other modules.
+
+3. **Employee**:
+   - Basic access level with view-only permissions for personal information.
+   - Cannot edit personal details or access others' information.
+   - Can submit leave requests, which go to the assigned supervisor for approval.
+
+## Getting Started
 
 ### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/dewminawijekoon/HRMS_DataBase_Project.git
 
-### Create FrontEnd Server
+2. Create FrontEnd Server
 ```
 cd FrontEnd
 npm install
 npm start
 ```
 
-### Create BackEnd Server
+3. Create BackEnd Server
 ```
 //Creating Python Environment
 cd BackEnd
