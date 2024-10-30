@@ -2,7 +2,7 @@ import logging
 import os
 from typing import List
 
-from classes.employee import Pie_graph_gender, Pie_graph_pay_department, Pie_graph_pay_grade, Pie_graph_role
+from classes.employee import Pie_graph_gender, Pie_graph_pay_department, Pie_graph_pay_grade, Pie_graph_role, leave_percentage
 import mysql.connector
 from dotenv import load_dotenv
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -216,6 +216,30 @@ async def get_pie_graph_department(db=Depends(get_db), current_user=Depends(get_
             )
 
         return pie_graph_response
+
+    except mysql.connector.Error as e:
+        logger.error(f"Database error: {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error occurred")
+
+    except Exception as e:
+        logger.error(f"Unexpected error: {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected error occurred")
+    
+@router.get("/last_month_employee", response_model=leave_percentage)
+def get_last_month_employee(db=Depends(get_db), current_user=Depends(get_current_active_user)):
+    cursor, _ = db
+
+    try:
+            # Call stored procedure or execute SQL query
+        cursor.callproc('last_month_leave_presentage')
+        last_month_employee = next(cursor.stored_results()).fetchone()
+
+        if not last_month_employee:
+                raise HTTPException(status_code=404, detail="No department data found")
+
+
+
+        return last_month_employee
 
     except mysql.connector.Error as e:
         logger.error(f"Database error: {str(e)}")

@@ -47,6 +47,8 @@ function Reports() {
     } else if (selectedItem === 'Employees by Pay Grade') {
       fetchData('http://localhost:8000/pie_graph_paygrade');
 
+    }else if(selectedItem === 'Leaves given within last month'){
+      fetchData('http://localhost:8000/last_month_employee');
     }
   }, [selectedItem]);
   function formatDataForChart(rawData) {
@@ -57,7 +59,7 @@ function Reports() {
   
     return {
       labels: rawData.map(
-        item => item.department_name || item.role || item.gender || item.pay_grade 
+        item => item.department_name || item.role || item.gender || item.leave_start_date
       ),
       datasets: [
         {
@@ -66,8 +68,9 @@ function Reports() {
             item =>
               (item.presentage_by_department ||
                 item.presentage_by_role ||
-                item.presentage_by_pay_grade ||
-                item.presentage_by_gender) * 100
+                item.presentage_by_gender ||
+                item.presentage_by_date_of_leave_request
+              ) * 100
           ),
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -138,7 +141,6 @@ function Reports() {
               >
                 <Dropdown.Item eventKey="Employees by Department">Employees by Department</Dropdown.Item>
                 <Dropdown.Item eventKey="Roles">Roles</Dropdown.Item>
-                <Dropdown.Item eventKey="Employees by Pay Grade">Employees by Pay Grade</Dropdown.Item>
                 <Dropdown.Item eventKey="Leaves given within last month">Leaves given within last month</Dropdown.Item>
                 <Dropdown.Item eventKey="Employees by gender">Employees by gender</Dropdown.Item>
               </DropdownButton>

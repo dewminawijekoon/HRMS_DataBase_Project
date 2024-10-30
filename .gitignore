@@ -3,6 +3,7 @@ BackEnd/.idea
 BackEnd/.venv/
 BackEnd/.env.*
 BackEnd/__pycache__/
+BackEnd/classes/__pycache__/
 BackEnd/qodana.yaml
 
 
