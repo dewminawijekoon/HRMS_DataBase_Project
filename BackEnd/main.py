@@ -8,7 +8,7 @@ app = FastAPI()
 # Configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Specify only allowed origins in production
+    allow_origins=["*"],  # Specify only allowed origins in production
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (e.g., GET, POST, OPTIONS)
     allow_headers=["*"],   # Allow all headers, necessary for token-based authentication

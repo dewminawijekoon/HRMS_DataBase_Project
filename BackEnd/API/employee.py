@@ -304,9 +304,9 @@ async def read_employee_other(employee_id: str, db=Depends(get_db),
         employee_id_ = user_record["employee_id"]
 
         # Check if current user is admin using a separate stored procedure
-        cursor.callproc("is_admin", [current_user.username])
+        cursor.callproc("is_supervisor", [current_user.username])
         admin_record = next(cursor.stored_results()).fetchone()
-        is_admin = admin_record["is_admin"] if admin_record else False
+        is_admin = admin_record["is_supervisor"] if admin_record else False
 
 
 

@@ -1,46 +1,42 @@
-import React, { useState } from 'react';
-import { Card, ListGroup, Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
-
-import avatar1 from '../../../../assets/images/user/avatar-1.jpg';
-import avatar2 from '../../../../assets/images/user/avatar-2.jpg';
-import avatar3 from '../../../../assets/images/user/avatar-3.jpg';
-import avatar4 from '../../../../assets/images/user/avatar-4.jpg';
+import { useState } from 'react';
+import React from 'react';
+import { Card, ListGroup } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import avatar from '../../../../assets/images/user/avatar-1.jpg'; 
+import { ArrowLeftCircle } from 'react-bootstrap-icons'; // Importing an icon for the back button
 
 const NavRight = () => {
-  const [listOpen, setListOpen] = useState(false);
+  const navigate = useNavigate();
 
-  
+  const seeProfile = () => {
+    console.log("See Profile");
+    const user_name = localStorage.getItem('user_name');
+    console.log(user_name);
+    navigate('./myprofile', { state: { employee_id: user_name } });
+  };
+
+  const goBack = () => {
+    navigate(-1); // This will navigate back to the previous page
+  };
+
   return (
     <React.Fragment>
-      <ListGroup as="ul" bsPrefix=" " className="navbar-nav ml-auto" id="navbar-right">
-
+      <ListGroup as="ul" bsPrefix=" " className="navbar-nav ml-auto" id="navbar-right" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+        
+        {/* Back Button */}
         <ListGroup.Item as="li" bsPrefix=" ">
-          <Dropdown align={'end'} className="drp-user">
-            <Dropdown.Toggle as={Link} variant="link" to="#" id="dropdown-basic">
-              <i className="icon feather icon-settings" />
-            </Dropdown.Toggle>
-            <Dropdown.Menu align="end" className="profile-notification">
-              <div className="pro-head">
-                <img src={avatar1} className="img-radius" alt="User Profile" />
-                <span>John Doe</span>
-                <Link to="/" className="dud-logout" title="Logout">
-                  <i className="feather icon-log-out" />
-                </Link>
-              </div>
-
-              <ListGroup as="ul" bsPrefix=" " variant="flush" className="pro-body">
-                <ListGroup.Item as="li" bsPrefix=" ">
-                  <Link to="/profile" className="dropdown-item">
-                    <i className="feather icon-user" /> Profile
-                  </Link>
-                </ListGroup.Item>
-              </ListGroup>
-
-            </Dropdown.Menu>
-          </Dropdown>
+          <a onClick={goBack} role="button" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <ArrowLeftCircle size={30} className="text-dark" /> {/* Back Icon */}
+          </a>
         </ListGroup.Item>
+
+        {/* Profile Logo Button */}
+        <ListGroup.Item as="li" bsPrefix=" ">
+          <a onClick={seeProfile} role="button" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+            <img src={avatar} className="img-radius" alt="User Profile" style={{ width: '60px', height: '60px', borderRadius: '50%' }} /> {/* Adjusted avatar size */}
+          </a>
+        </ListGroup.Item>
+
       </ListGroup>
     </React.Fragment>
   );
