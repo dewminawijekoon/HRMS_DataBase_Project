@@ -2,7 +2,6 @@ import React, { useState,useEffect } from 'react';
 import { Row, Col, Card, Table, Tabs, Tab, ListGroup, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import useTokenAuth from '../../auth/TokenAuth.jsx';
 
 
 
@@ -11,8 +10,6 @@ import avatar2 from '../../assets/images/user/avatar-2.jpg';
 
 let initialApprovalList = null;
 
-  
-
 let dashSalesData = [
   { title: 'On Leave', amount: '201', value: 10 },
   { title: 'Working format : Full Time', amount: '589',  value: 50},
@@ -20,11 +17,16 @@ let dashSalesData = [
 ];
 
  initialApprovalList = [
-  {leave_request_id: 'none', employee_id: 'none',
-    request_date: 'none',
-   leave_start_date: 'you don"t have any leave request', period_of_absence: 'none',
-   reason_for_absence: 'none', type_of_leave: 'none',
+  {leave_request_id: '001A', employee_id: '00123',
+    request_date: '2024-10-2',
+   leave_start_date: '2024-10-3', period_of_absence: '3',
+   reason_for_absence: 'Medical', type_of_leave: 'casual',
    request_status: 'p'},
+   {leave_request_id: '001B', employee_id: '00153',
+    request_date: '2024-10-8',
+   leave_start_date: '2024-10-12', period_of_absence: '5',
+   reason_for_absence: 'Medical', type_of_leave: 'casual',
+   request_status: 'p'}
 ];
 
 let birthdaylist = [
@@ -35,13 +37,8 @@ let birthdaylist = [
 ];
 
 const DashDefault = () => { 
-
-  useTokenAuth();
-  const [userName, setUserName] = useState('');
   
   useEffect(() => {
-    const storedName = localStorage.getItem('username');
-    setUserName(storedName);
     getdelaisfrombackend();
   }, []);
 
@@ -93,7 +90,42 @@ const DashDefault = () => {
   };
   
   const getdashSalesData = async () =>{
-    //
+    try {
+      // Fetch data from the backend
+      const response = await fetch('http://localhost:8000/last_month_employee', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // Include token for authentication, if required
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+  
+      // If the response is okay, convert it to JSON
+      if (response.ok) {
+        const data = await response.json();
+        // Use the fetched data or set the initialApprovalList if data is empty
+        const dashData = data.length ? data : dashSalesData;
+        console.log(dashData);
+        if(leaveRequests=="null"){
+          console.log("No data");
+        }
+        else{
+          dashSalesData = dashData;
+        }
+
+        // Update state or UI with fetched data
+        // Example: setLeaveRequests(leaveRequests);
+      } else {
+        // Handle errors (e.g., 404, 403, etc.)
+        console.error('Failed to fetch leave requests:', response.status);
+      }
+    } catch (error) {
+      // Catch any network errors
+      console.error('Error fetching leave requests:', error);
+    } finally {
+      // Optionally, handle cleanup or UI state changes here
+    }
   }
   
 
@@ -111,8 +143,18 @@ const DashDefault = () => {
     });       
   };
 
+  const handleReject = (index,name) => {
+    /*
+    const updatedList = approvalList.filter((_, i) => i !== index); // Remove the rejected item from the list
+    setApprovalList(updatedList);
+    */
+    navigate('./leave-request-form');
+  };
+
+  const userName = localStorage.getItem('username');
   let tabcontent = (
     <React.Fragment>
+        
       {birthdaylist.map((data, index) => (
         <div className="d-flex friendlist-box align-items-center justify-content-center m-b-20" key={index}>
           <div className="m-r-10 photo-table flex-shrink-0">
@@ -136,15 +178,11 @@ const DashDefault = () => {
 
   return (
     <React.Fragment>
-      <Row>
-        <Col>
-          <Card className="mb-4">
-            <Card.Body>
-              <h4>Welcome Supervisor, {userName}!</h4>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+      <Card className="mb-4">
+        <Card.Body>
+          <h4>Welcome Supervisor, {userName}!</h4>
+        </Card.Body>
+      </Card>
       <Row>
         {dashSalesData.map((data, index) => {
           return (
@@ -203,10 +241,16 @@ const DashDefault = () => {
                       </td>
                       <td>
                         <button
+                          className="label theme-bg2 text-white f-12"
+                          onClick={() => handleReject(index,data.name)}
+                        >
+                          Reject
+                        </button>
+                        <button
                           className="label theme-bg text-white f-12"
                           onClick={() => handleApprove(index,data.name)}
                         >
-                          View
+                          Approve
                         </button>
                       </td>
                     </tr>
