@@ -2,6 +2,7 @@
 BackEnd/.idea
 BackEnd/.venv/
 BackEnd/.env.*
+BackEnd/.env
 BackEnd/__pycache__/
 BackEnd/classes/__pycache__/
 BackEnd/qodana.yaml
@@ -67,3 +68,5 @@ Thumbs.db
 *.pid
 
 
+BackEnd/.env
+BackEnd/.env
