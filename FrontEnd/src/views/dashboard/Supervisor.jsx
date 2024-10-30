@@ -1,52 +1,91 @@
-import React, { useState,useEffect } from 'react';
-import { Row, Col, Card, Table, Tabs, Tab, ListGroup, Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-
-
-
+import useTokenAuth from '../../auth/TokenAuth.jsx';
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Card, Table, Tabs, Tab } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
+import { toast } from 'sonner';
 
-let initialApprovalList = null;
+const DashDefault = () => {
+  useTokenAuth();
+  const [userName, setUserName] = useState('');
+  let navigate = useNavigate();
 
-let dashSalesData = [
-  { title: 'On Leave', amount: '201', value: 10 },
-  { title: 'Working format : Full Time', amount: '589',  value: 50},
-  { title: 'Working format : Part Time', amount: '105',  value: 90}
-];
+  const birthdaylist = [
+    { name: 'Bhanuka Botheju', dept: 'HR' },
+    { name: 'Kasun Chamara', dept: 'HR' },
+    { name: 'Dinushka Attanayaka', dept: 'HR' },
+    { name: 'Eshin Menusha', dept: 'HR' },
+  ];
 
- initialApprovalList = [
-  {leave_request_id: '001A', employee_id: '00123',
-    request_date: '2024-10-2',
-   leave_start_date: '2024-10-3', period_of_absence: '3',
-   reason_for_absence: 'Medical', type_of_leave: 'casual',
-   request_status: 'p'},
-   {leave_request_id: '001B', employee_id: '00153',
-    request_date: '2024-10-8',
-   leave_start_date: '2024-10-12', period_of_absence: '5',
-   reason_for_absence: 'Medical', type_of_leave: 'casual',
-   request_status: 'p'}
-];
+  const [getemloyeemonth, setgetemloyeemonth] = useState([
+    { name: 'Bhanuka Botheju', dept: 'HR' },
+    { name: 'Kasun Chamara', dept: 'HR' },
+    { name: 'Dinushka Attanayaka', dept: 'HR' },
+    { name: 'Eshin Menusha', dept: 'HR' },
+  ]);
 
-let birthdaylist = [
-  { name: 'Bhanuka Botheju', dept: 'HR' },
-  { name: 'Kasun Chamara', dept: 'HR' },
-  { name: 'Dinushka Attanayaka', dept: 'HR' },
-  { name: 'Eshin Menusha', dept: 'HR' }
-];
+  const [dashboard,setdashboard] = useState([
+    { title: 'On Leave', amount: '201', value: 10 },
+    { title: 'Working format : Full Time', amount: '589', value: 50 },
+    { title: 'Working format : Part Time', amount: '105', value: 90 },
+  ]);
 
-const DashDefault = () => { 
-  
+  const [approvalList, setApprovalList] = useState([
+    {
+      first_name: 'first_name',
+      last_name: 'last_name',
+      gender: 'Male',
+      leave_request_id: 'none',
+      employee_id: 'none',
+      request_date: 'none',
+      leave_start_date: 'none',
+      period_of_absence: 'none',
+      reason_for_absence: 'none',
+      type_of_leave: 'none',
+      request_status: 'P',
+    },
+  ]);
+
   useEffect(() => {
-    getdelaisfrombackend();
+    getApprovalList();
+    getsetdashboarddata();
+    console.log("this is a token", localStorage.getItem('token'));
+    const storedName = localStorage.getItem('username');
+    setUserName(storedName);
   }, []);
 
-  const getdelaisfrombackend = async () => {
-    //getdashSalesData();
-    getApprovalList();
-    //getBirthdayList();
-  }
+
+  
+  
+  const getsetdashboarddata = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/dashboard_data', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        const data = responseData.data; // Access the data property
+  
+        // Ensure data is an array before setting it to dashboard
+        setdashboard(Array.isArray(data) ? data : []);
+        console.log("dashboard data received", data);
+      } else {
+        console.error('Failed to fetch dashboard data:', response.status);
+        setdashboard([]); // Set as empty array in case of an error
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      setdashboard([]); // Set as empty array in case of an error
+    }
+  };
+  
+  
 
   const getApprovalList = async () => {
     console.log("this is token")
@@ -88,73 +127,34 @@ const DashDefault = () => {
       // Optionally, handle cleanup or UI state changes here
     }
   };
-  
-  const getdashSalesData = async () =>{
+
+  const getEmployeeofthemonth = async() => {
     try {
-      // Fetch data from the backend
-      const response = await fetch('http://localhost:8000/last_month_employee', {
+      const response = await fetch('http://localhost:8000/employee_of_month', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          // Include token for authentication, if required
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
       });
-  
-      // If the response is okay, convert it to JSON
+
       if (response.ok) {
         const data = await response.json();
-        // Use the fetched data or set the initialApprovalList if data is empty
-        const dashData = data.length ? data : dashSalesData;
-        console.log(dashData);
-        if(leaveRequests=="null"){
-          console.log("No data");
-        }
-        else{
-          dashSalesData = dashData;
-        }
-
-        // Update state or UI with fetched data
-        // Example: setLeaveRequests(leaveRequests);
+        setgetemloyeemonth(data);
       } else {
-        // Handle errors (e.g., 404, 403, etc.)
         console.error('Failed to fetch leave requests:', response.status);
       }
     } catch (error) {
-      // Catch any network errors
       console.error('Error fetching leave requests:', error);
-    } finally {
-      // Optionally, handle cleanup or UI state changes here
     }
   }
-  
 
-  const [listOpen, setListOpen] = useState(false);
-  const [approvalList, setApprovalList] = useState(initialApprovalList);
-  const navigate = useNavigate();
-
-  const handleApprove = (index,name) => {
-    /*
-    const updatedList = approvalList.filter((_, i) => i !== index); // Remove the approved item from the list
-    setApprovalList(updatedList);
-    */
-    navigate('./leave-request-form', {
-      state: { details_list: initialApprovalList[index] }
-    });       
+  const handleApprove = (index) => {
+    navigate('./leave-request-form', { state: { details_list: approvalList[index] } });
   };
 
-  const handleReject = (index,name) => {
-    /*
-    const updatedList = approvalList.filter((_, i) => i !== index); // Remove the rejected item from the list
-    setApprovalList(updatedList);
-    */
-    navigate('./leave-request-form');
-  };
-
-  const userName = localStorage.getItem('username');
-  let tabcontent = (
+  const renderTabContent = () => (
     <React.Fragment>
-        
       {birthdaylist.map((data, index) => (
         <div className="d-flex friendlist-box align-items-center justify-content-center m-b-20" key={index}>
           <div className="m-r-10 photo-table flex-shrink-0">
@@ -174,47 +174,73 @@ const DashDefault = () => {
     </React.Fragment>
   );
 
-
+  const renderbirthdaycontent = () => {
+  return (
+    <React.Fragment>
+      {getemloyeemonth.map((data, index) => (
+        <div className="d-flex friendlist-box align-items-center justify-content-center m-b-20" key={index}>
+          <div className="m-r-10 photo-table flex-shrink-0">
+            <Link to="#">
+              <img className="rounded-circle" style={{ width: '40px' }} src={avatar1} alt="activity-user" />
+            </Link>
+          </div>
+          <div className="flex-grow-1 ms-3">
+            <h6 className="m-0 d-inline">{data.name}</h6>
+            <span className="float-end d-flex align-items-center">
+              <i className="fa fa-caret-up f-22 m-r-10 text-c-green" />
+              {data.dept}
+            </span>
+          </div>
+        </div>
+      ))}
+    </React.Fragment>
+  );
+};
 
   return (
     <React.Fragment>
-      <Card className="mb-4">
-        <Card.Body>
-          <h4>Welcome Supervisor, {userName}!</h4>
-        </Card.Body>
-      </Card>
       <Row>
-        {dashSalesData.map((data, index) => {
-          return (
-            <Col key={index} xl={6} xxl={4}>
-              <Card>
-                <Card.Body>
-                  <h6 className="mb-4">{data.title}</h6>
-                  <div className="row d-flex align-items-center">
-                    <div className="col-9">
-                      <h3 className="f-w-300 d-flex align-items-center m-b-0">
-                        <i className={`feather ${data.icon} f-30 m-r-5`} /> {data.amount}
-                      </h3>
-                    </div>
-                    <div className="col-3 text-end">
-                      <p className="m-b-0">{data.value}%</p>
-                    </div>
+        <Col>
+          <Card className="mb-4">
+            <Card.Body>
+              <h4>Welcome Supervisor, {userName}!</h4>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+
+      <Row>
+        {dashboard.map((data, index) => (
+          <Col key={index} xl={6} xxl={4}>
+            <Card>
+              <Card.Body>
+                <h6 className="mb-4">{data.title}</h6>
+                <div className="row d-flex align-items-center">
+                  <div className="col-9">
+                    <h3 className="f-w-300 d-flex align-items-center m-b-0">
+                      {data.amount} {/* Display the amount */}
+                    </h3>
                   </div>
-                  <div className="progress m-t-30" style={{ height: '7px' }}>
-                    <div
-                      className={`progress-bar progress-c-theme`}
-                      role="progressbar"
-                      style={{ width: `${data.value}%` }}
-                      aria-valuenow={data.value}
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
+                  <div className="col-3 text-end">
+                    <p className="m-b-0">{(data.value * 100).toFixed(2)}%</p> {/* Display value as a percentage */}
                   </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          );
-        })}
+                </div>
+                <div className="progress m-t-30" style={{ height: '7px' }}>
+                  <div
+                    className="progress-bar progress-c-theme"
+                    role="progressbar"
+                    style={{ width: `${(data.value * 100).toFixed(2)}%` }} // Convert to percentage for the progress bar
+                    aria-valuenow={data.value * 100}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  />
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+
+        
         <Col md={6} xl={8}>
           <Card className="Recent-Users widget-focus-lg">
             <Card.Header>
@@ -226,11 +252,10 @@ const DashDefault = () => {
                   {approvalList.map((data, index) => (
                     <tr key={index} className='unread'>
                       <td>
-                        <img className="rounded-circle" style={{ width: '40px' }} src={data.gender === 'M' ? avatar2 : avatar1}  alt="activity-user" />
+                        <img className="rounded-circle" style={{ width: '40px' }} src={data.gender === 'Male' ? avatar2 : avatar1} alt="activity-user" />
                       </td>
                       <td>
-                      <h6 className="mb-1" style={{cursor:'pointer'}}>{data.employee_id}</h6>  
-                      
+                        <h6 className="mb-1" style={{ cursor: 'pointer' }}>{data.first_name}</h6>
                         <p className="m-0">{data.type_of_leave}</p>
                       </td>
                       <td>
@@ -240,17 +265,11 @@ const DashDefault = () => {
                         </h6>
                       </td>
                       <td>
-                        <button
-                          className="label theme-bg2 text-white f-12"
-                          onClick={() => handleReject(index,data.name)}
-                        >
-                          Reject
-                        </button>
-                        <button
+                      <button
                           className="label theme-bg text-white f-12"
                           onClick={() => handleApprove(index,data.name)}
                         >
-                          Approve
+                          View
                         </button>
                       </td>
                     </tr>
@@ -264,13 +283,13 @@ const DashDefault = () => {
           <Card>
             <Tabs defaultActiveKey="today" id="uncontrolled-tab-example">
               <Tab eventKey="today" title="Celebration">
-                {tabcontent}
+              {renderTabContent()}
               </Tab>
               <Tab eventKey="week" title="Achievement">
-                {tabcontent}
+                {renderTabContent()}
               </Tab>
               <Tab eventKey="all" title="All">
-                {tabcontent}
+                {renderTabContent()}
               </Tab>
             </Tabs>
           </Card>
@@ -281,3 +300,4 @@ const DashDefault = () => {
 };
 
 export default DashDefault;
+

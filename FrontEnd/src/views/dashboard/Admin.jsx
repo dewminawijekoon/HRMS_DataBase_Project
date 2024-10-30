@@ -56,7 +56,7 @@ const DashDefault = () => {
   }, []);
 
 
-  const userName = localStorage.getItem('username');
+  
   
   const getsetdashboarddata = async () => {
     try {
@@ -181,11 +181,6 @@ const DashDefault = () => {
 
   return (
     <React.Fragment>
-      <Card className="mb-4">
-        <Card.Body>
-          <h4>Welcome Admin, {userName}!</h4>
-        </Card.Body>
-      </Card>
       <Row>
         <Col>
           <Card className="mb-4">
