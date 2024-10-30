@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Row, Col, Card, Table, Tabs, Tab, ListGroup, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import useTokenAuth from '../../auth/TokenAuth.jsx';
 
 
 
@@ -10,6 +11,8 @@ import avatar2 from '../../assets/images/user/avatar-2.jpg';
 
 let initialApprovalList = null;
 
+  
+
 let dashSalesData = [
   { title: 'On Leave', amount: '201', value: 10 },
   { title: 'Working format : Full Time', amount: '589',  value: 50},
@@ -17,16 +20,11 @@ let dashSalesData = [
 ];
 
  initialApprovalList = [
-  {leave_request_id: '001A', employee_id: '00123',
-    request_date: '2024-10-2',
-   leave_start_date: '2024-10-3', period_of_absence: '3',
-   reason_for_absence: 'Medical', type_of_leave: 'casual',
+  {leave_request_id: 'none', employee_id: 'none',
+    request_date: 'none',
+   leave_start_date: 'you don"t have any leave request', period_of_absence: 'none',
+   reason_for_absence: 'none', type_of_leave: 'none',
    request_status: 'p'},
-   {leave_request_id: '001B', employee_id: '00153',
-    request_date: '2024-10-8',
-   leave_start_date: '2024-10-12', period_of_absence: '5',
-   reason_for_absence: 'Medical', type_of_leave: 'casual',
-   request_status: 'p'}
 ];
 
 let birthdaylist = [
@@ -37,8 +35,13 @@ let birthdaylist = [
 ];
 
 const DashDefault = () => { 
+
+  useTokenAuth();
+  const [userName, setUserName] = useState('');
   
   useEffect(() => {
+    const storedName = localStorage.getItem('username');
+    setUserName(storedName);
     getdelaisfrombackend();
   }, []);
 
@@ -108,14 +111,6 @@ const DashDefault = () => {
     });       
   };
 
-  const handleReject = (index,name) => {
-    /*
-    const updatedList = approvalList.filter((_, i) => i !== index); // Remove the rejected item from the list
-    setApprovalList(updatedList);
-    */
-    navigate('./leave-request-form');
-  };
-
   let tabcontent = (
     <React.Fragment>
       {birthdaylist.map((data, index) => (
@@ -141,6 +136,15 @@ const DashDefault = () => {
 
   return (
     <React.Fragment>
+      <Row>
+        <Col>
+          <Card className="mb-4">
+            <Card.Body>
+              <h4>Welcome Supervisor, {userName}!</h4>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
       <Row>
         {dashSalesData.map((data, index) => {
           return (
@@ -199,16 +203,10 @@ const DashDefault = () => {
                       </td>
                       <td>
                         <button
-                          className="label theme-bg2 text-white f-12"
-                          onClick={() => handleReject(index,data.name)}
-                        >
-                          Reject
-                        </button>
-                        <button
                           className="label theme-bg text-white f-12"
                           onClick={() => handleApprove(index,data.name)}
                         >
-                          Approve
+                          View
                         </button>
                       </td>
                     </tr>

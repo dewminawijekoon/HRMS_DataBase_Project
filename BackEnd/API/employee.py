@@ -391,7 +391,38 @@ async def delete_employee(employee_id: str, db=Depends(get_db), current_user=Dep
         logger.error(f"Unexpected error: {str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected error occurred")
 
+@router.get("/dashboard_data")
+async def get_dash_data(db=Depends(get_db), current_user=Depends(get_current_active_user)):
+    cursor, _ = db
 
+    try:
+        # Fetch the employee_id of the current user (currently logged-in user)
+        cursor.callproc("get_leave_count")
+        on_leave = next(cursor.stored_results()).fetchone()
+
+        cursor.callproc("get_fulltime_employee_count_presentage")
+        full_time = next(cursor.stored_results()).fetchone()
+
+        cursor.callproc("get_parttime_employee_count_presentage")
+        part_time = next(cursor.stored_results()).fetchone()
+
+        # Prepare the data for response in a single dictionary
+        dashboard_data = [
+            {"title": 'On Leave', "amount": on_leave['amount'], "value": on_leave['value']},
+            {"title": 'Working format: Full Time', "amount": full_time['amount'], "value": full_time['value']},
+            {"title": 'Working format: Part Time', "amount": part_time['amount'], "value": part_time['value']}
+        ]
+
+        logger.info("Fetched dashboard info successfully")
+        return {"data": dashboard_data}
+
+    except mysql.connector.Error as e:
+        logger.error(f"Database error while fetching employee details: {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error")
+
+    except Exception as e:
+        logger.error(f"Unexpected error: {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Unexpected error")
 
 
 

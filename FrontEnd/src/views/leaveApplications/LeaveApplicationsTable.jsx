@@ -5,12 +5,6 @@ import { useNavigate } from 'react-router-dom';
 let leaveRequestDetails = [
   { request_id: '111', employee_id: '001A', request_date: '12/12/2021', leave_start_date: '13/12/2012', period_of_absence: '2', reason: 'Sick Leave', type_of_leave: 'Annual', Name: 'Bhanuka' },
   { request_id: '112', employee_id: '001B', request_date: '12/12/2021', leave_start_date: '13/12/2012', period_of_absence: '2', reason: 'Sick Leave', type_of_leave: 'Annual', Name: 'Umesha' },
-  { request_id: '113', employee_id: '001C', request_date: '12/12/2021', leave_start_date: '13/12/2012', period_of_absence: '2', reason: 'Sick Leave', type_of_leave: 'Annual', Name: 'Niduni' },
-  { request_id: '114', employee_id: '001D', request_date: '12/12/2021', leave_start_date: '13/12/2012', period_of_absence: '2', reason: 'Sick Leave', type_of_leave: 'Annual', Name: 'Isurumuni' },
-  { request_id: '115', employee_id: '001E', request_date: '12/12/2021', leave_start_date: '13/12/2012', period_of_absence: '2', reason: 'Sick Leave', type_of_leave: 'Annual', Name: 'Dewmina' },
-  { request_id: '116', employee_id: '001F', request_date: '12/12/2021', leave_start_date: '13/12/2012', period_of_absence: '2', reason: 'Sick Leave', type_of_leave: 'Annual', Name: 'Jayakodi' },
-  { request_id: '117', employee_id: '001G', request_date: '12/12/2021', leave_start_date: '13/12/2012', period_of_absence: '2', reason: 'Sick Leave', type_of_leave: 'Annual', Name: 'Wijekon' },
-  { request_id: '118', employee_id: '001H', request_date: '12/12/2021', leave_start_date: '13/12/2012', period_of_absence: '2', reason: 'Sick Leave', type_of_leave: 'Annual', Name: 'Botheju' },
 ];
 
 const LeaveApplications = () => {
