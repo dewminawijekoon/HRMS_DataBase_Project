@@ -68,14 +68,14 @@ Employees are structured with various positions and statuses:
    ```bash
    git clone https://github.com/dewminawijekoon/HRMS_DataBase_Project.git
 
-## Create FrontEnd Server
+### Create FrontEnd Server
 ```
 cd FrontEnd
 npm install
 npm start
 ```
 
-## Create BackEnd Server
+### Create BackEnd Server
 ```
 //Creating Python Environment
 cd BackEnd
