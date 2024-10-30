@@ -591,17 +591,21 @@ begin
 end //
 delimiter ;
 
--- dashboard informations
 delimiter //
 create procedure get_leave_count()
 begin
-  select count(leave_request_id)
+  declare count_of_employee int;
+  select count(employee.employee_id) 
+  into count_of_employee
+  from employee ;
+  select count(leave_request_id) as get_leave_count ,count(leave_request_id)/count_of_employee as get_leave_count_presentage
   from leave_request 
   where request_status = 'A'  
   and (leave_start_date <= current_date())
   and (date_add(leave_start_date, interval period_of_absence day) > current_date());
 end //
 delimiter ;
+
 
 delimiter //
 create procedure get_parttime_employee_count_presentage()
@@ -761,7 +765,7 @@ begin
         employee.first_name,
         employee.last_name,
         employee.birthday,
-        employee.employee_nic,
+        employee.employee_nic as nic,
         employee.gender,
         employee.marital_status,
         employee.number_of_dependents,
@@ -773,10 +777,10 @@ begin
         department.department_name,
         branch.branch_name,
 		employee.profile_photo,
-        emergency_contact.name,
-        emergency_contact.nic,
-        emergency_contact.address,
-        emergency_contact.emergency_contact_number,
+        emergency_contact.name as emergency_contact_name,
+        emergency_contact.nic as emergency_contact_nic,
+        emergency_contact.address as emergency_contact_address,
+        emergency_contact.emergency_contact_number as emergency_contact_number,
         leave_count_record.annual_leave_remaining,
         leave_count_record.casual_leave_remaining,
         leave_count_record.maternity_leave_remaining,
