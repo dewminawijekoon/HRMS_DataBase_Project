@@ -11,7 +11,7 @@ const menuItems = {
           title: 'Dashboard',
           type: 'item',
           icon: 'feather icon-home',
-          url: '/supervisor/dashboard/'
+          url: '/supervisor/'
         },
         {
           id: 'employees',
@@ -46,7 +46,7 @@ const menuItems = {
           title: 'Log Out',
           type: 'item',
           icon: 'feather icon-power',
-          url: '/signin-1'
+          url: '/'
         },
       ]
     },
