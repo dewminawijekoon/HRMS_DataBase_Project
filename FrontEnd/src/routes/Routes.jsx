@@ -69,6 +69,10 @@ const routes = [
     allowedRoles: ['admin'], // Only users with 'admin' role can access
     routes: [
       {
+      path: '/Dummy',
+    element: lazy(() => import('../views/Dummy/Dummy'))
+      },
+      {
         exact: 'true',
         path: '',
         element: lazy(() => import('../views/dashboard/Admin'))
