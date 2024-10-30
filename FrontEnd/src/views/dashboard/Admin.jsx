@@ -4,16 +4,13 @@ import { Row, Col, Card, Table, Tabs, Tab } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
+import useTokenAuth from '../../auth/TokenAuth.jsx';
 import { toast } from 'sonner';
 
 const DashDefault = () => {
+  useTokenAuth();
+  const [userName, setUserName] = useState('');
   let navigate = useNavigate();
-
-  const dashSalesData = [
-    { title: 'On Leave', amount: '201', value: 10 },
-    { title: 'Working format : Full Time', amount: '589', value: 50 },
-    { title: 'Working format : Part Time', amount: '105', value: 90 },
-  ];
 
   const birthdaylist = [
     { name: 'Bhanuka Botheju', dept: 'HR' },
@@ -29,6 +26,11 @@ const DashDefault = () => {
     { name: 'Eshin Menusha', dept: 'HR' },
   ]);
 
+  const [dashboard,setdashboard] = useState([
+    { title: 'On Leave', amount: '201', value: 10 },
+    { title: 'Working format : Full Time', amount: '589', value: 50 },
+    { title: 'Working format : Part Time', amount: '105', value: 90 },
+  ]);
 
   const [approvalList, setApprovalList] = useState([
     {
@@ -48,11 +50,36 @@ const DashDefault = () => {
 
   useEffect(() => {
     getApprovalList();
-    //getEmployeeofthemonth();
+    getsetdashboarddata();
     console.log("this is a token", localStorage.getItem('token'));
+    const storedName = localStorage.getItem('username');
+    setUserName(storedName);
   }, []);
 
+
   const userName = localStorage.getItem('username');
+  
+  const getsetdashboarddata = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/dashboard_data', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setdashboard(data);
+        console.log("On dashboard data  recive",data);
+      } else {
+        console.error('Failed to fetch dashboard data:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+    }
+  }
 
   const getApprovalList = async () => {
     console.log("Token:", localStorage.getItem('token'));
@@ -98,10 +125,6 @@ const DashDefault = () => {
   }
 
   const handleApprove = (index) => {
-    navigate('./leave-request-form', { state: { details_list: approvalList[index] } });
-  };
-
-  const handleReject = (index) => {
     navigate('./leave-request-form', { state: { details_list: approvalList[index] } });
   };
 
@@ -157,7 +180,17 @@ const DashDefault = () => {
         </Card.Body>
       </Card>
       <Row>
-        {dashSalesData.map((data, index) => (
+        <Col>
+          <Card className="mb-4">
+            <Card.Body>
+              <h4>Welcome Admin, {userName}!</h4>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+
+      <Row>
+        {dashboard.map((data, index) => (
           <Col key={index} xl={6} xxl={4}>
             <Card>
               <Card.Body>
@@ -186,6 +219,7 @@ const DashDefault = () => {
             </Card>
           </Col>
         ))}
+        
         <Col md={6} xl={8}>
           <Card className="Recent-Users widget-focus-lg">
             <Card.Header>
@@ -210,17 +244,11 @@ const DashDefault = () => {
                         </h6>
                       </td>
                       <td>
-                        <button
-                          className="label theme-bg2 text-white f-12"
-                          onClick={() => handleReject(index)}
-                        >
-                          Reject
-                        </button>
-                        <button
+                      <button
                           className="label theme-bg text-white f-12"
-                          onClick={() => handleApprove(index)}
+                          onClick={() => handleApprove(index,data.name)}
                         >
-                          Approve
+                          View
                         </button>
                       </td>
                     </tr>
