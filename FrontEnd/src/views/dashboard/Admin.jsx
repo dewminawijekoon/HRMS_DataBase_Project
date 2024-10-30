@@ -4,7 +4,6 @@ import { Row, Col, Card, Table, Tabs, Tab } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
-import useTokenAuth from '../../auth/TokenAuth.jsx';
 import { toast } from 'sonner';
 
 const DashDefault = () => {
@@ -68,18 +67,25 @@ const DashDefault = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
       });
-
+  
       if (response.ok) {
-        const data = await response.json();
-        setdashboard(data);
-        console.log("On dashboard data  recive",data);
+        const responseData = await response.json();
+        const data = responseData.data; // Access the data property
+  
+        // Ensure data is an array before setting it to dashboard
+        setdashboard(Array.isArray(data) ? data : []);
+        console.log("dashboard data received", data);
       } else {
         console.error('Failed to fetch dashboard data:', response.status);
+        setdashboard([]); // Set as empty array in case of an error
       }
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
+      setdashboard([]); // Set as empty array in case of an error
     }
-  }
+  };
+  
+  
 
   const getApprovalList = async () => {
     console.log("Token:", localStorage.getItem('token'));
@@ -95,6 +101,7 @@ const DashDefault = () => {
       if (response.ok) {
         const data = await response.json();
         setApprovalList(data);
+        console.log('this is a Approval List:', data);
       } else {
         console.error('Failed to fetch leave requests:', response.status);
       }
@@ -198,19 +205,19 @@ const DashDefault = () => {
                 <div className="row d-flex align-items-center">
                   <div className="col-9">
                     <h3 className="f-w-300 d-flex align-items-center m-b-0">
-                      {data.amount}
+                      {data.amount} {/* Display the amount */}
                     </h3>
                   </div>
                   <div className="col-3 text-end">
-                    <p className="m-b-0">{data.value}%</p>
+                    <p className="m-b-0">{(data.value * 100).toFixed(2)}%</p> {/* Display value as a percentage */}
                   </div>
                 </div>
                 <div className="progress m-t-30" style={{ height: '7px' }}>
                   <div
                     className="progress-bar progress-c-theme"
                     role="progressbar"
-                    style={{ width: `${data.value}%` }}
-                    aria-valuenow={data.value}
+                    style={{ width: `${(data.value * 100).toFixed(2)}%` }} // Convert to percentage for the progress bar
+                    aria-valuenow={data.value * 100}
                     aria-valuemin="0"
                     aria-valuemax="100"
                   />
@@ -219,6 +226,7 @@ const DashDefault = () => {
             </Card>
           </Col>
         ))}
+
         
         <Col md={6} xl={8}>
           <Card className="Recent-Users widget-focus-lg">

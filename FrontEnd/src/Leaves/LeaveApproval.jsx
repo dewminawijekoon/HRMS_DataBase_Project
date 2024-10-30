@@ -12,7 +12,7 @@ const LeaveRequestForm = (props) => {
 
   // Use useEffect to set seebutton based on request_status
   useEffect(() => {
-    if (details_list.request_status === 'p' ) {
+    if (details_list.request_status === 'P' || 'p' ) {
       setseebutton(true);
     } else {
       setseebutton(false);

@@ -203,7 +203,6 @@ async def all_leaves(db=Depends(get_db), current_user=Depends(get_current_active
             employee_id=row['employee_id'],
             first_name=row['first_name'],
             last_name=row['last_name'],
-            gender=row['gender'],
             request_date=row['request_date'],
             leave_start_date=row['leave_start_date'],
             period_of_absence=row['period_of_absence'],
