@@ -1,3 +1,4 @@
+-- create database tables
 drop database if exists hrms;
 create database hrms;
 use hrms;
@@ -46,7 +47,7 @@ create table leave_limit (
 create table employee_position (
   job_title varchar(40),
   employee_status varchar(40),
-  pay_grade int not null references leave_limit(pay_grade) on delete set null on update cascade ,
+  pay_grade int references leave_limit(pay_grade) on delete set null on update cascade ,
   basic_salary numeric(6,2) not null,
   primary key (job_title,employee_status)
 );
@@ -78,20 +79,22 @@ create table employee (
   foreign key (job_title) references employee_position(job_title) on delete set null on update cascade,
   foreign key (department_id) references department(department_id) on delete set null on update cascade,
   foreign key (branch_id) references branch(branch_id) on delete set null on update cascade,
-  check (  marital_status  in ('Married','Single'))
+  check (marital_status  in ('Married','Single'))
 );
+
 create table supervisor(
 	employee_id varchar(40),
 	supervisor_id varchar(40),
 	date date,
     primary key(employee_id,supervisor_id),
     foreign key (employee_id) references employee(employee_id) on delete cascade on update cascade
-    );
+);
+
 create table employee_of_the_month(
 	employee_id varchar(40),
     year varchar(40),
     month varchar(40),
-    primary key (year,month) ,
+    primary key (year,month),
     foreign key (employee_id) references employee(employee_id) on delete cascade on update cascade
 );
 
@@ -104,6 +107,7 @@ create table emergency_contact (
   primary key ( emergency_contact_id) ,
   foreign key ( emergency_contact_id) references employee(employee_id) on delete cascade on update cascade
 );
+
 create table leave_count_record (
   employee_id varchar(40),
   leave_type_id int,
@@ -127,8 +131,8 @@ create table leave_request (
   request_status char,
   primary key (leave_request_id),
   foreign key (employee_id) references employee(employee_id) on delete cascade on update cascade,
-  check (  request_status  in ('P','R','A')),
-  check ( type_of_leave  in ('annual', 'casual', 'maternity', 'nopay'))
+  check (request_status  in ('P','R','A')),
+  check (type_of_leave  in ('annual', 'casual', 'maternity', 'nopay'))
 );
 
 create table users (
