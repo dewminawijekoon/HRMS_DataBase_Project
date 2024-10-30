@@ -99,3 +99,9 @@ class Pie_graph_pay_department(BaseModel):
 
     class Config:
         from_attributes = True
+        
+class leave_percentage(BaseModel):
+    leave_start_date:d.date
+    presentage_by_date_of_leave_request:float
+    class Config:
+        from_attributes = True
