@@ -18,8 +18,13 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 600000
 
 # Database connection function
 def get_db():
-    connection = mysql.connector.connect(host=os.getenv('DB_HOST'), user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'), database=os.getenv('DB_NAME'))
+    connection = mysql.connector.connect(
+    host=os.getenv('DB_HOST'),          # Environment variable for host
+    port=os.getenv('DB_PORT'),      # Convert port to an integer
+    user=os.getenv('DB_USER'),           # Environment variable for username
+    password=os.getenv('DB_PASSWORD'),   # Environment variable for password
+    database=os.getenv('DB_NAME')        # Environment variable for database name
+)
     cursor = connection.cursor(dictionary=True)
     try:
         yield cursor, connection

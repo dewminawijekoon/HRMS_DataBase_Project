@@ -21,8 +21,13 @@ router = APIRouter()
 
 # Database connection pool
 load_dotenv()
-dbconfig = {"host": os.getenv('DB_HOST'), "user": os.getenv('DB_USER'), "password": os.getenv('DB_PASSWORD'),
-    "database": os.getenv('DB_NAME'), }
+dbconfig = {
+    "host": os.getenv('DB_HOST'),
+    "port": os.getenv('DB_PORT'),  # Convert port to integer
+    "user": os.getenv('DB_USER'),
+    "password": os.getenv('DB_PASSWORD'),
+    "database": os.getenv('DB_NAME')
+}
 db_pool = pooling.MySQLConnectionPool(pool_name="mypool", pool_size=5, **dbconfig)
 
 
