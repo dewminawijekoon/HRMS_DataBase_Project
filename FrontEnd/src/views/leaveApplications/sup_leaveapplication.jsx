@@ -30,6 +30,7 @@ const LeaveApplications = () => {
         const data = await response.json();
         leaveRequestDetails = data;
         console.log('succuess');
+        toast.success('Success!')
         console.log(data); // Handle the fetched data here
       } else {
         console.error('Failed to fetch leave requests:', response.status);

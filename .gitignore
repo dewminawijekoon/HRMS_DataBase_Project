@@ -70,3 +70,6 @@ Thumbs.db
 
 BackEnd/.env
 BackEnd/.env
+BackEnd/API/__pycache__/users.cpython-312.pyc
+BackEnd/API/__pycache__/supervisor.cpython-312.pyc
+BackEnd/API/__pycache__/supervisor.cpython-312.pyc

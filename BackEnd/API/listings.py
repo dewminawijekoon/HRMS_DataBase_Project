@@ -80,8 +80,7 @@ async def admin_list(db=Depends(get_db), current_user=Depends(get_current_active
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Unexpected error: {str(e)}")
-    
-
+ 
 
 @router.get("/pie_graph_gender", response_model=List[Pie_graph_gender])
 def graph_by_gender(db=Depends(get_db), current_user=Depends(get_current_active_user)):

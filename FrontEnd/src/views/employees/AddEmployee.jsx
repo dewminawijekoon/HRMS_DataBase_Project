@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import { Row, Col, Card, Button, Form } from 'react-bootstrap';
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
-import { Toaster, toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = (props) => {
@@ -69,7 +68,6 @@ const Profile = (props) => {
               if (response.ok) {
                 const data = await response.json();
                 console.log('Sucsessfully Added');
-                toast.success('Employee Added Successfully');
                 navigate(0);
               } else {
                 console.error('Add Employee failed:', response.status);

@@ -91,8 +91,8 @@ const Profile = (props) => {
         setIsSubmitting(true);
         console.log(employeeDetails.first_name);
     try {
-      const response = await fetch(`http://localhost:8000/employee/${employee_id}`, {
-        method: 'UPDATE',
+      const response = await fetch(`http://localhost:8000/employee_/${employee_id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`

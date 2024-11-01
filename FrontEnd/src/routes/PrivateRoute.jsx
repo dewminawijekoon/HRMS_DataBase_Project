@@ -1,4 +1,3 @@
-import { toast } from "sonner";
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import useTokenAuth from '../auth/TokenAuth.jsx';
@@ -19,7 +18,6 @@ const PrivateRoute = ({ children, allowedRoles }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(role)) {
-    //toast.error("You are not authorized!");
     return <Navigate to="/" />; // Redirect if the user doesn't have permission
   }
 

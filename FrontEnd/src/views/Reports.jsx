@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, DropdownButton, Dropdown, Spinner } from 'react-bootstrap';
 import PieChart from '../components/PieChart';
+import EmployeeDataTable from './Dummy/Dummy'; // Import the EmployeeDataTable component
 
 function Reports() {
   const [data, setData] = useState({
@@ -47,10 +48,11 @@ function Reports() {
     } else if (selectedItem === 'Employees by Pay Grade') {
       fetchData('http://localhost:8000/pie_graph_paygrade');
 
-    }else if(selectedItem === 'Leaves given within last month'){
+    } else if (selectedItem === 'Leaves given within last month') {
       fetchData('http://localhost:8000/last_month_employee');
     }
   }, [selectedItem]);
+
   function formatDataForChart(rawData) {
     if (!Array.isArray(rawData) || rawData.length === 0) {
       console.warn("Raw data is empty or not an array:", rawData);
@@ -108,7 +110,7 @@ function Reports() {
         const fetchedData = await response.json();
         console.log('Fetched Data:', fetchedData); // Debug fetched data
         setData(formatDataForChart(fetchedData));
-        console.log("used data",data.labels);
+        console.log("used data", data.labels);
         console.log(data.datasets[0].data);     
       } else {
         console.error('Fetch failed:', response.status);
@@ -164,6 +166,18 @@ function Reports() {
             )}
           </Card.Body>
         </Card>
+      </Row>
+
+      {/* Add the EmployeeDataTable component here */}
+      <Row className="mt-4">
+        <Col>
+          <Card>
+            <Card.Header>Employee Data</Card.Header>
+            <Card.Body>
+              <EmployeeDataTable /> {/* Render the EmployeeDataTable component */}
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
     </React.Fragment>
   );

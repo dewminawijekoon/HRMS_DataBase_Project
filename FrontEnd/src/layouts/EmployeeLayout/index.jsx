@@ -10,7 +10,7 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 import { ConfigContext } from '../../contexts/ConfigContext';
 import * as actionType from '../../store/actions';
 
-const EmployeeLayout = ({ children }) => {
+const SupervisorLayout = ({ children }) => {
   const windowSize = useWindowSize();
   const ref = useRef();
   const configContext = useContext(ConfigContext);
@@ -100,7 +100,7 @@ const EmployeeLayout = ({ children }) => {
   );
 };
 
-EmployeeLayout.propTypes = {
+SupervisorLayout.propTypes = {
   children: PropTypes.node
 };
-export default EmployeeLayout;
+export default SupervisorLayout;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Row, Col, Card, Button, Form } from 'react-bootstrap';
-import { Toaster, toast } from 'sonner';
 
 const LeaveRequestForm = (props) => {
   const location = useLocation();
@@ -35,7 +34,6 @@ const LeaveRequestForm = (props) => {
 
       if (response.ok) {
         console.log('Leave Request Approved');
-        toast.success('Approve Done');
         navigate(-1);
       } else {
         console.error('Approve failed:', response.status);
@@ -62,7 +60,6 @@ const LeaveRequestForm = (props) => {
 
       if (response.ok) {
         console.log('Reject Done');
-        toast.error('Leave Request Rejected');
         navigate(-1);
       } else {
         console.error('Reject failed:', response.status);
@@ -75,7 +72,6 @@ const LeaveRequestForm = (props) => {
 
   return (
     <React.Fragment>
-      <Toaster richColors />
       <div
         className="auth-wrapper d-flex justify-content-center align-items-center"
         style={{ minHeight: '100vh' }}

@@ -4,7 +4,7 @@ import { Row, Col, Card, Table, Tabs, Tab } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
-import { toast } from 'sonner';
+
 
 const DashDefault = () => {
   useTokenAuth();

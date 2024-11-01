@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 //import * as jwt_decode from 'jwt-decode'; // Use named import
 import {jwtDecode} from 'jwt-decode';
-import { toast } from "sonner";
 
 const isTokenExpired = (token) => {
   if (!token) return true; // No token means it is expired
@@ -26,7 +25,6 @@ const useTokenAuth = () => {
     const checkTokenExpiration = async () => {
       if (isTokenExpired(token)) {
         console.log('Token is expired, redirecting to login...');
-        toast.error("Token is expired, redirecting to login...");
         localStorage.removeItem('token'); // Optional: Clear the token from local storage
         localStorage.removeItem('username'); 
         localStorage.removeItem('role'); 

@@ -93,7 +93,7 @@ const Employees = () => {
             </Card.Body>
           </Card>
 
-          <Card className="widget-focus-lg">
+          <Card className="mb-4">
             <Card.Header>
               <Card.Title as="h5">Admin</Card.Title>
             </Card.Header>

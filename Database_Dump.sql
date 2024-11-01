@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `hrms` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `hrms`;
--- MYSQL DataBase for Jupiter HRMS Group Project
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hrms
+-- Host: localhost    Database: hrms
 -- ------------------------------------------------------
--- Server version	8.0.40
+-- Server version	8.0.37
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -141,8 +141,6 @@ CREATE TABLE `emergency_contact` (
   `address` varchar(40) DEFAULT NULL,
   `emergency_contact_number` varchar(40) NOT NULL,
   PRIMARY KEY (`emergency_contact_id`),
-  UNIQUE KEY `nic` (`nic`),
-  UNIQUE KEY `emergency_contact_number` (`emergency_contact_number`),
   CONSTRAINT `emergency_contact_ibfk_1` FOREIGN KEY (`emergency_contact_id`) REFERENCES `employee` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -153,7 +151,7 @@ CREATE TABLE `emergency_contact` (
 
 LOCK TABLES `emergency_contact` WRITE;
 /*!40000 ALTER TABLE `emergency_contact` DISABLE KEYS */;
-INSERT INTO `emergency_contact` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','Ranjith','902345671V','10,borella road,colombo.','0772345678'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','Chandana','952876543V','89,ragama road,gampaha.','0778765432'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','Ruwan','922765432V','456,kandy road,kadawatha.','0787654321'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8d','Nimal','912345679V','21,maharagama road,nugegoda.','0771234569'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f9c','Saman','922234567V','123,malabe road,kottawa.','0719876543'),('21b63c70-5c83-433b-9ab8-de8899d18854','Namal','912340690V','91,Athurugiriya road,Malabe.','0711234580'),('7364528d-ce36-4d7f-a0aa-7cd084c077f3','Sahan','992912190V','46,wakanda road,homagama.','0712340123'),('7b163c45-ce7b-422f-93d9-d72abb4af5ae','Kumara','923222222V','489, parakrame road, kottawa.','0718152643'),('e10bfb2f-9cb9-4278-ac8c-952ee4428f02','Shiranshi','992919190V','48, samagi road, Maharagema.','0710023452');
+INSERT INTO `emergency_contact` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','Ranjith','902345671V','10,borella road,colombo.','0772345678'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','Chandana','952876543V','89,ragama road,gampaha.','0778765432'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','Ruwan','922765432V','456,kandy road,kadawatha.','0787654321'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7d','Kamal','922765433V','123, colombo road, kandy.','0787654331'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7e','Rohan','922765434V','789, galle road, matara.','0787654341'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7f','Nuwan','922765435V','456, negombo road, chilaw.','0787654351'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7g','Saman','922765436V','123, kurunegala road, kurunegala.','0787654361'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7h','Ranjith','922765437V','456, badulla road, badulla.','0787654371'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7i','Sunil','922765438V','789, trincomalee road, trincomalee.','0787654381'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7j','Kumara','922765439V','123, anuradhapura road, anuradhapura.','0787654391'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7k','Nimal','922765440V','456, batticaloa road, batticaloa.','0787654401'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7l','Ruwan','922765441V','789, jaffna road, jaffna.','0787654411'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8b','Vibawa','922280690V','400,piliyandala road,pannipitiya.','0711214680'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8d','Nimal','912345679V','21,maharagama road,nugegoda.','0771234569'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f9c','Saman','922234567V','123,malabe road,kottawa.','0719876543'),('0ca6900a-c6bd-40ad-bd40-d335fbd42f7v','Nimal','922765451V','123, batticaloa road, batticaloa.','0787654511'),('1ba6900a-c6bd-40ad-bd40-d335fbd42f7m','Ruwan','922765442V','123, gampaha road, gampaha.','0787654421'),('1ca6900a-c6bd-40ad-bd40-d335fbd42f7w','Ruwan','922765452V','456, galle road, galle.','0787654521'),('21b63c70-5c83-433b-9ab8-de8899d18854','Namal','912340690V','91,Athurugiriya road,Malabe.','0711234580'),('2ba6900a-c6bd-40ad-bd40-d335fbd42f7n','Kamal','922765443V','456, colombo road, colombo.','0787654431'),('2ca6900a-c6bd-40ad-bd40-d335fbd42f7x','Ranjith','922765453V','789, negombo road, negombo.','0787654531'),('3ba6900a-c6bd-40ad-bd40-d335fbd42f7o','Nimal','922765444V','789, kandy road, kandy.','0787654441'),('3ca6900a-c6bd-40ad-bd40-d335fbd42f7y','Kamal','922765454V','123, kurunegala road, kurunegala.','0787654541'),('4ba6900a-c6bd-40ad-bd40-d335fbd42f7p','Ranjith','922765445V','123, negombo road, negombo.','0787654451'),('4ca6900a-c6bd-40ad-bd40-d335fbd42f7z','Nimal','922765455V','456, colombo road, colombo.','0787654551'),('5ba6900a-c6bd-40ad-bd40-d335fbd42f7q','Saman','922765446V','456, kurunegala road, kurunegala.','0787654461'),('5ca6900a-c6bd-40ad-bd40-d335fbd42f7a','Ranjith','922765456V','789, kandy road, kandy.','0787654561'),('6ba6900a-c6bd-40ad-bd40-d335fbd42f7r','Ruwan','922765447V','789, jaffna road, jaffna.','0787654471'),('7364528d-ce36-4d7f-a0aa-7cd084c077f3','Sahan','992912190V','46,wakanda road,homagama.','0712340123'),('7b163c45-ce7b-422f-93d9-d72abb4af5ae','Kumara','923222222V','489, parakrame road, kottawa.','0718152643'),('7ba6900a-c6bd-40ad-bd40-d335fbd42f7s','Ranjith','922765448V','123, badulla road, badulla.','0787654481'),('8ba6900a-c6bd-40ad-bd40-d335fbd42f7t','Sunil','922765449V','456, trincomalee road, trincomalee.','0787654491'),('8c163c45-ce7b-422f-93d9-d72abb4af5ae','Kumara','923222223V','490, parakrame road, kottawa.','0718152644'),('9ba6900a-c6bd-40ad-bd40-d335fbd42f7u','Kumara','922765450V','789, anuradhapura road, anuradhapura.','0787654501'),('9d163c45-ce7b-422f-93d9-d72abb4af5ae','Kumara','923222224V','491, parakrame road, kottawa.','0718152645'),('ad163c45-ce7b-422f-93d9-d72ab74af5ae','Kumara','923222225V','492, parakrame road, kottawa.','0718152646'),('e10bfb2f-9cb9-4278-ac8c-952ee4428f02','Shiranshi','992919190V','48, samagi road, Maharagema.','0710023452');
 /*!40000 ALTER TABLE `emergency_contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +180,6 @@ CREATE TABLE `employee` (
   `profile_photo` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
   UNIQUE KEY `employee_nic` (`employee_nic`),
-  UNIQUE KEY `contact_number` (`contact_number`),
   KEY `job_title` (`job_title`),
   KEY `department_id` (`department_id`),
   KEY `branch_id` (`branch_id`),
@@ -199,7 +196,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','Kamal','Fernando','1980-07-15','954321876V','Male','Single',0,'10,borella road,colombo.','0709876543','kamal.fernando@company.com','Worker',1,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','Gayani','Wickramasinghe','1982-03-12','948765432V','Female','Single',0,'89,ragama road,gampaha.','0765432198','gayani.wickramasinghe@company.com','Worker',2,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','Lahiru','Senanayake','1986-02-27','907654321V','Male','Married',2,'456,kandy road,kadawatha.','0718765432','lahiru.senanayake@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8d','Saman','Silva','1978-11-20','976543219V','Male','Married',1,'21,maharagama road,nugegoda.','0723456789','saman.silva@company.com','Worker',3,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f9c','Amal','Perera','1975-05-16','987654321V','Male','Single',0,'123,malabe road,kottawa.','0711234567','amal.perera@company.com','Worker',2,1,NULL),('21b63c70-5c83-433b-9ab8-de8899d18854','Upuli','Jayasinghe','1960-01-24','969653320V','Female','Married',6,'91,Athurugiriya road,Malabe.','0752843628','Upuli.jupiter@company.com','Cleaner',2,1,NULL),('7364528d-ce36-4d7f-a0aa-7cd084c077f3','Umesha','Jayakody','1965-02-24','949654341V','Male','Single',0,'46,wakanda road,homagama.','0741234567','Umesha.jupiter@company.com','HR Manager',1,1,NULL),('7b163c45-ce7b-422f-93d9-d72abb4af5ae','Araliya','Perera','1964-01-27','989654321V','Male','Single',0,'489, parakrame road, kottawa.','0751204567','Araliya.jupiter@company.com','Software enginner',2,1,NULL),('e10bfb2f-9cb9-4278-ac8c-952ee4428f02','Christopher','Ranasinghe','1963-02-24','929054321V','Male','Married',2,'48, samagi road, Maharagema.','0751234567','Christopher.jupiter@company.com','HR assistent',1,1,NULL);
+INSERT INTO `employee` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','Kamal','Fernando','1980-07-15','954321876V','Male','Single',0,'10,borella road,colombo.','0709876543','kamal.fernando@company.com','Worker',1,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','Gayani','Wickramasinghe','1982-03-12','948765432V','Female','Single',0,'89,ragama road,gampaha.','0765432198','gayani.wickramasinghe@company.com','Worker',2,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','Lahiru','Senanayake','1986-02-27','907654321V','Male','Married',2,'456,kandy road,kadawatha.','0718765432','lahiru.senanayake@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7d','Nimal','Perera','1985-03-15','907654322V','Male','Single',0,'123, colombo road, kandy.','0718765433','nimal.perera@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7e','Sunil','Fernando','1984-04-10','907654323V','Male','Married',1,'789, galle road, matara.','0718765434','sunil.fernando@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7f','Kumara','Silva','1983-05-05','907654324V','Male','Single',0,'456, negombo road, chilaw.','0718765435','kumara.silva@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7g','Ruwan','Jayasinghe','1982-06-20','907654325V','Male','Married',3,'123, kurunegala road, kurunegala.','0718765436','ruwan.jayasinghe@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7h','Chandana','Wijesinghe','1981-07-25','907654326V','Male','Single',0,'456, badulla road, badulla.','0718765437','chandana.wijesinghe@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7i','Mahesh','Gunasekara','1980-08-30','907654327V','Male','Married',2,'789, trincomalee road, trincomalee.','0718765438','mahesh.gunasekara@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7j','Suresh','Bandara','1979-09-15','907654328V','Male','Single',0,'123, anuradhapura road, anuradhapura.','0718765439','suresh.bandara@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7k','Ranjith','Perera','1978-10-10','907654329V','Male','Married',1,'456, batticaloa road, batticaloa.','0718765440','ranjith.perera@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7l','Gayan','Senarath','1977-11-05','907654330V','Male','Single',0,'789, jaffna road, jaffna.','0718765441','gayan.senarath@company.com','Worker',4,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8b','Nayana','Jayarathna','1968-01-24','989653329V','Female','Single',0,'400,piliyandala road,pannipitiya.','0751288490','Aayana.jupiter@company.com','Worker',2,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8d','Saman','Silva','1978-11-20','976543219V','Male','Married',1,'21,maharagama road,nugegoda.','0723456789','saman.silva@company.com','Worker',3,1,NULL),('0ba6900a-c6bd-40ad-bd40-d335fbd42f9c','Amal','Perera','1975-05-16','987654321V','Male','Single',0,'123,malabe road,kottawa.','0711234567','amal.perera@company.com','Worker',2,1,NULL),('0ca6900a-c6bd-40ad-bd40-d335fbd42f7v','Ranjithma','Bandara','1990-05-30','907654340V','Male','Married',1,'123, batticaloa road, batticaloa.','0718765451','ranjith.bandara@company.com','Worker',4,1,NULL),('1ba6900a-c6bd-40ad-bd40-d335fbd42f7m','Kevin','Wijeratne','1981-08-15','907654331V','Male','Single',0,'123, gampaha road, gampaha.','0718765442','kasun.wijeratne@company.com','Worker',4,1,NULL),('1ca6900a-c6bd-40ad-bd40-d335fbd42f7w','Gagani','Senanayake','1991-06-05','907654341V','Male','Single',0,'456, galle road, galle.','0718765452','gayan.senanayake@company.com','Worker',4,1,NULL),('21b63c70-5c83-433b-9ab8-de8899d18854','Upuli','Jayasinghe','1960-01-24','969653320V','Female','Married',6,'91,Athurugiriya road,Malabe.','0752843628','Upuli.jupiter@company.com','Cleaner',2,1,NULL),('2ba6900a-c6bd-40ad-bd40-d335fbd42f7n','Shradha','Perera','1982-09-20','907654332V','Male','Married',1,'456, colombo road, colombo.','0718765443','nuwan.perera@company.com','Worker',4,1,NULL),('2ca6900a-c6bd-40ad-bd40-d335fbd42f7x','Kasungi','Wijesinghe','1992-07-10','907654342V','Male','Married',2,'789, negombo road, negombo.','0718765453','kasun.wijesinghe@company.com','Worker',4,1,NULL),('3ba6900a-c6bd-40ad-bd40-d335fbd42f7o','Ruwantha','Fernando','1983-10-25','907654333V','Male','Single',0,'789, kandy road, kandy.','0718765444','ruwan.fernando@company.com','Worker',4,1,NULL),('3ca6900a-c6bd-40ad-bd40-d335fbd42f7y','Nuwanthika','Perera','1993-08-15','907654343V','Male','Single',0,'123, kurunegala road, kurunegala.','0718765454','nuwani.perera@company.com','Worker',4,1,NULL),('4ba6900a-c6bd-40ad-bd40-d335fbd42f7p','Sunimal','Wijesinghe','1984-11-30','907654334V','Male','Married',2,'123, negombo road, negombo.','0718765445','sunil.wijesinghe@company.com','Worker',4,1,NULL),('4ca6900a-c6bd-40ad-bd40-d335fbd42f7z','Dinekshi','Fernando','1994-09-20','907654344V','Male','Married',1,'456, colombo road, colombo.','0718765455','ruwani.fernando@company.com','Worker',4,1,NULL),('5ba6900a-c6bd-40ad-bd40-d335fbd42f7q','Kumari','Jayasinghe','1985-12-05','907654335V','Male','Single',0,'456, kurunegala road, kurunegala.','0718765446','kumara.jayasinghe@company.com','Worker',4,1,NULL),('5ca6900a-c6bd-40ad-bd40-d335fbd42f7a','Susantha','Wijesinghe','1995-10-25','907654345V','Male','Single',0,'789, kandy road, kandy.','0718765456','sunili.wijesinghe@company.com','Worker',4,1,NULL),('6ba6900a-c6bd-40ad-bd40-d335fbd42f7r','Ranjitham','Senarath','1986-01-10','907654336V','Male','Married',1,'789, jaffna road, jaffna.','0718765447','ranjith.senarath@company.com','Worker',4,1,NULL),('7364528d-ce36-4d7f-a0aa-7cd084c077f3','Umesha','Jayakody','1965-02-24','949654341V','Male','Single',0,'46,wakanda road,homagama.','0741234567','Umesha.jupiter@company.com','HR Manager',1,1,NULL),('7b163c45-ce7b-422f-93d9-d72abb4af5ae','Araliya','Perera','1944-01-27','989654321V','Male','Single',0,'489, parakrame road, kottawa.','0751204567','Araliya.jupiter@company.com','Software enginner',2,1,NULL),('7ba6900a-c6bd-40ad-bd40-d335fbd42f7s','Gayantha','Wijeratne','1987-02-15','907654337V','Male','Single',0,'123, badulla road, badulla.','0718765448','gayan.wijeratne@company.com','Worker',4,1,NULL),('8ba6900a-c6bd-40ad-bd40-d335fbd42f7t','Maheshani','Perera','1988-03-20','907654338V','Male','Married',2,'456, trincomalee road, trincomalee.','0718765449','mahesh.perera@company.com','Worker',4,1,NULL),('8c163c45-ce7b-422f-93d9-d72abb4af5ae','Nimal','Fernando','1965-02-28','989654322V','Male','Single',0,'490, parakrame road, kottawa.','0751204568','Nimal.jupiter@company.com','Software enginner',2,1,NULL),('9ba6900a-c6bd-40ad-bd40-d335fbd42f7u','Sureshan','Fernando','1989-04-25','907654339V','Male','Single',0,'789, anuradhapura road, anuradhapura.','0718765450','suresh.fernando@company.com','Worker',4,1,NULL),('9d163c45-ce7b-422f-93d9-d72abb4af5ae','Sunil','Perera','1966-03-29','989654323V','Male','Single',0,'491, parakrame road, kottawa.','0751204569','Sunil.jupiter@company.com','QA Engineer',4,1,NULL),('ad163c45-ce7b-422f-93d9-d72ab74af5ae','Kamal','Silva','1967-04-30','989654324V','Male','Single',0,'492, parakrame road, kottawa.','0751204570','Kamal.jupiter@company.com','QA Engineer',4,1,NULL),('e10bfb2f-9cb9-4278-ac8c-952ee4428f02','Christopher','Ranasinghe','1963-02-24','929054321V','Male','Married',2,'48, samagi road, Maharagema.','0751234567','Christopher.jupiter@company.com','HR assistent',1,1,NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +223,7 @@ CREATE TABLE `employee_of_the_month` (
 
 LOCK TABLES `employee_of_the_month` WRITE;
 /*!40000 ALTER TABLE `employee_of_the_month` DISABLE KEYS */;
-INSERT INTO `employee_of_the_month` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','2024','10');
+INSERT INTO `employee_of_the_month` VALUES ('7364528d-ce36-4d7f-a0aa-7cd084c077f3','2024','10');
 /*!40000 ALTER TABLE `employee_of_the_month` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,7 +280,7 @@ CREATE TABLE `leave_count_record` (
 
 LOCK TABLES `leave_count_record` WRITE;
 /*!40000 ALTER TABLE `leave_count_record` DISABLE KEYS */;
-INSERT INTO `leave_count_record` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c',2,15,5,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8d',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f9c',2,15,10,0,7),('21b63c70-5c83-433b-9ab8-de8899d18854',3,10,5,0,8),('7364528d-ce36-4d7f-a0aa-7cd084c077f3',1,20,10,0,5),('7b163c45-ce7b-422f-93d9-d72abb4af5ae',1,20,10,0,5),('e10bfb2f-9cb9-4278-ac8c-952ee4428f02',1,20,10,0,5);
+INSERT INTO `leave_count_record` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7d',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7e',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7f',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7g',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7h',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7i',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7j',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7k',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7l',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8b',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8d',2,15,10,0,7),('0ba6900a-c6bd-40ad-bd40-d335fbd42f9c',2,15,10,0,7),('0ca6900a-c6bd-40ad-bd40-d335fbd42f7v',2,15,10,0,7),('1ba6900a-c6bd-40ad-bd40-d335fbd42f7m',2,15,10,0,7),('1ca6900a-c6bd-40ad-bd40-d335fbd42f7w',2,15,10,0,7),('21b63c70-5c83-433b-9ab8-de8899d18854',3,10,5,0,8),('2ba6900a-c6bd-40ad-bd40-d335fbd42f7n',2,15,10,0,7),('2ca6900a-c6bd-40ad-bd40-d335fbd42f7x',2,15,10,0,7),('3ba6900a-c6bd-40ad-bd40-d335fbd42f7o',2,15,10,0,7),('3ca6900a-c6bd-40ad-bd40-d335fbd42f7y',2,15,10,0,7),('4ba6900a-c6bd-40ad-bd40-d335fbd42f7p',2,15,10,0,7),('4ca6900a-c6bd-40ad-bd40-d335fbd42f7z',2,15,10,0,7),('5ba6900a-c6bd-40ad-bd40-d335fbd42f7q',2,15,10,0,7),('5ca6900a-c6bd-40ad-bd40-d335fbd42f7a',2,15,10,0,7),('6ba6900a-c6bd-40ad-bd40-d335fbd42f7r',2,15,10,0,7),('7364528d-ce36-4d7f-a0aa-7cd084c077f3',1,20,10,0,5),('7b163c45-ce7b-422f-93d9-d72abb4af5ae',1,20,10,0,5),('7ba6900a-c6bd-40ad-bd40-d335fbd42f7s',2,15,10,0,7),('8ba6900a-c6bd-40ad-bd40-d335fbd42f7t',2,15,10,0,7),('8c163c45-ce7b-422f-93d9-d72abb4af5ae',1,20,10,0,5),('9ba6900a-c6bd-40ad-bd40-d335fbd42f7u',2,15,10,0,7),('9d163c45-ce7b-422f-93d9-d72abb4af5ae',1,20,10,0,5),('ad163c45-ce7b-422f-93d9-d72ab74af5ae',1,20,10,0,5),('e10bfb2f-9cb9-4278-ac8c-952ee4428f02',1,20,10,0,5);
 /*!40000 ALTER TABLE `leave_count_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -312,7 +309,7 @@ CREATE TABLE `leave_limit` (
 
 LOCK TABLES `leave_limit` WRITE;
 /*!40000 ALTER TABLE `leave_limit` DISABLE KEYS */;
-INSERT INTO `leave_limit` VALUES (1,1,20,10,0,5),(2,2,15,10,0,7),(3,3,10,5,0,8);
+INSERT INTO `leave_limit` VALUES (1,1,20,10,60,5),(2,2,15,10,30,7),(3,3,10,5,20,8);
 /*!40000 ALTER TABLE `leave_limit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +326,7 @@ CREATE TABLE `leave_request` (
   `request_date` date DEFAULT NULL,
   `leave_start_date` date DEFAULT NULL,
   `period_of_absence` int DEFAULT NULL,
-  `reason_for_absence` varchar(1000) DEFAULT NULL,
+  `reason_for_absence` varchar(40) DEFAULT NULL,
   `type_of_leave` varchar(40) DEFAULT NULL,
   `request_status` char(1) DEFAULT NULL,
   PRIMARY KEY (`leave_request_id`),
@@ -337,7 +334,7 @@ CREATE TABLE `leave_request` (
   CONSTRAINT `leave_request_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `leave_request_chk_1` CHECK ((`request_status` in (_utf8mb4'P',_utf8mb4'R',_utf8mb4'A'))),
   CONSTRAINT `leave_request_chk_2` CHECK ((`type_of_leave` in (_utf8mb4'annual',_utf8mb4'casual',_utf8mb4'maternity',_utf8mb4'nopay')))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,7 +343,7 @@ CREATE TABLE `leave_request` (
 
 LOCK TABLES `leave_request` WRITE;
 /*!40000 ALTER TABLE `leave_request` DISABLE KEYS */;
-INSERT INTO `leave_request` VALUES (1,'0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','2024-10-27','2024-10-09',5,'Medical Leave','casual','A');
+INSERT INTO `leave_request` VALUES (1,'0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','2024-10-27','2024-10-27',1,'Sick','annual','P'),(2,'0ba6900a-c6bd-40ad-bd40-d335fbd42f8b','2024-10-27','2024-10-28',2,'Medical Leave','casual','A'),(3,'0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','2024-10-28','2024-10-29',3,'Medical Leave','casual','A'),(4,'5ca6900a-c6bd-40ad-bd40-d335fbd42f7a','2024-10-28','2024-10-29',2,'Trip','annual','A'),(5,'4ca6900a-c6bd-40ad-bd40-d335fbd42f7z','2024-10-31','2024-10-29',1,'Trip','annual','P'),(6,'0ca6900a-c6bd-40ad-bd40-d335fbd42f7v','2024-10-31','2024-10-29',3,'Medical Leave','casual','A'),(7,'1ca6900a-c6bd-40ad-bd40-d335fbd42f7w','2024-10-31','2024-10-29',4,'Trip','casual','P'),(8,'7ba6900a-c6bd-40ad-bd40-d335fbd42f7s','2024-10-31','2024-10-30',3,'Trip','casual','R'),(9,'0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','2024-10-31','2024-10-30',1,'Sick','annual','P'),(10,'0ba6900a-c6bd-40ad-bd40-d335fbd42f7f','2024-10-31','2024-10-31',2,'Sick','annual','A'),(11,'5ba6900a-c6bd-40ad-bd40-d335fbd42f7q','2024-10-31','2024-10-31',2,'Medical Leave','casual','A');
 /*!40000 ALTER TABLE `leave_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -535,7 +532,7 @@ CREATE TABLE `supervisor` (
 
 LOCK TABLES `supervisor` WRITE;
 /*!40000 ALTER TABLE `supervisor` DISABLE KEYS */;
-INSERT INTO `supervisor` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','e10bfb2f-9cb9-4278-ac8c-952ee4428f02','2024-10-27'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-27'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','7364528d-ce36-4d7f-a0aa-7cd084c077f3','2024-10-27'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8d','7364528d-ce36-4d7f-a0aa-7cd084c077f3','2024-10-27'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f9c','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-27'),('21b63c70-5c83-433b-9ab8-de8899d18854','7364528d-ce36-4d7f-a0aa-7cd084c077f3','2024-10-27'),('7b163c45-ce7b-422f-93d9-d72abb4af5ae','e10bfb2f-9cb9-4278-ac8c-952ee4428f02','2024-10-27');
+INSERT INTO `supervisor` VALUES ('0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7d','8c163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7e','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7f','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7g','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7h','8c163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7i','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7j','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7k','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f7l','8c163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8b','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f8d','8c163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('0ba6900a-c6bd-40ad-bd40-d335fbd42f9c','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('0ca6900a-c6bd-40ad-bd40-d335fbd42f7v','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('1ba6900a-c6bd-40ad-bd40-d335fbd42f7m','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('1ca6900a-c6bd-40ad-bd40-d335fbd42f7w','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('21b63c70-5c83-433b-9ab8-de8899d18854','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('2ba6900a-c6bd-40ad-bd40-d335fbd42f7n','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('2ca6900a-c6bd-40ad-bd40-d335fbd42f7x','8c163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('3ba6900a-c6bd-40ad-bd40-d335fbd42f7o','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('3ca6900a-c6bd-40ad-bd40-d335fbd42f7y','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('4ba6900a-c6bd-40ad-bd40-d335fbd42f7p','8c163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('4ca6900a-c6bd-40ad-bd40-d335fbd42f7z','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('5ba6900a-c6bd-40ad-bd40-d335fbd42f7q','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('5ca6900a-c6bd-40ad-bd40-d335fbd42f7a','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('6ba6900a-c6bd-40ad-bd40-d335fbd42f7r','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('7b163c45-ce7b-422f-93d9-d72abb4af5ae','e10bfb2f-9cb9-4278-ac8c-952ee4428f02','2024-10-31'),('7ba6900a-c6bd-40ad-bd40-d335fbd42f7s','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('8ba6900a-c6bd-40ad-bd40-d335fbd42f7t','8c163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('8c163c45-ce7b-422f-93d9-d72abb4af5ae','e10bfb2f-9cb9-4278-ac8c-952ee4428f02','2024-10-31'),('9ba6900a-c6bd-40ad-bd40-d335fbd42f7u','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('9d163c45-ce7b-422f-93d9-d72abb4af5ae','e10bfb2f-9cb9-4278-ac8c-952ee4428f02','2024-10-31'),('ad163c45-ce7b-422f-93d9-d72ab74af5ae','e10bfb2f-9cb9-4278-ac8c-952ee4428f02','2024-10-31');
 /*!40000 ALTER TABLE `supervisor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -563,7 +560,7 @@ CREATE TABLE `user_access` (
 
 LOCK TABLES `user_access` WRITE;
 /*!40000 ALTER TABLE `user_access` DISABLE KEYS */;
-INSERT INTO `user_access` VALUES ('Amal',0,0),('Araliya',0,1),('Christopher',1,1),('Gayani',0,0),('Kamal',0,0),('Lahiru',0,0),('Saman',0,0),('Umesha',1,1),('Upuli',0,0);
+INSERT INTO `user_access` VALUES ('Amal',0,0),('Araliya',0,1),('Chandana',0,0),('Christopher',1,1),('Dinekshi',0,0),('Gagani',0,0),('Gayan',0,0),('Gayani',0,0),('Gayantha',0,0),('Kamal',0,0),('Kamali',0,1),('Kasungi',0,0),('Kevin',0,0),('Kumara',0,0),('Kumari',0,0),('Lahiru',0,0),('Mahesh',0,0),('Maheshani',0,0),('Nayana',0,0),('Nimal',0,0),('Nimali',0,1),('Nuwanthika',0,0),('Ranjith',0,0),('Ranjitham',0,0),('Ranjithma',0,0),('Ruwan',0,0),('Ruwantha',0,0),('Saman',0,0),('Shradha',0,0),('Sunil',0,0),('Sunili',0,1),('Sunimal',0,0),('Suresh',0,0),('Sureshan',0,0),('Susantha',0,0),('Umesha',1,1),('Upuli',0,0);
 /*!40000 ALTER TABLE `user_access` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -591,7 +588,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('Amal','$2a$12$xazBvGFK56iB5nJJ8K/FvO8uScRbaf4eSLTMD09f2h.fOxQR5M9q2','0ba6900a-c6bd-40ad-bd40-d335fbd42f9c','2024-10-28'),('Araliya','Araliya','7b163c45-ce7b-422f-93d9-d72abb4af5ae',NULL),('Christopher','Christopher','e10bfb2f-9cb9-4278-ac8c-952ee4428f02',NULL),('Gayani','Gayani','0ba6900a-c6bd-40ad-bd40-d335fbd42f7b',NULL),('Kamal','Kamal','0ba6900a-c6bd-40ad-bd40-d335fbd42f7a',NULL),('Lahiru','Lahiru','0ba6900a-c6bd-40ad-bd40-d335fbd42f7c',NULL),('Saman','Saman','0ba6900a-c6bd-40ad-bd40-d335fbd42f8d',NULL),('Umesha','$2a$12$C63JIvPI4QUY6rw33cS9wuqo9QOSCp9.XWvhRdRuow8hOqTLZzt5a','7364528d-ce36-4d7f-a0aa-7cd084c077f3','2024-10-29'),('Upuli','Upuli','21b63c70-5c83-433b-9ab8-de8899d18854',NULL);
+INSERT INTO `users` VALUES ('Amal','$2y$12$6.LbI0B0SRuWqxCTOsz4zuxL1fMmenMarge3u4Vvl.HMsZLw/gjwS','0ba6900a-c6bd-40ad-bd40-d335fbd42f9c','2024-10-31'),('Araliya','$2y$12$1Cq2NctwHnACVdJabWfHoOwHag0jm1gcOxXl2xfw3/bgaVtu8hJ/C','7b163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('Chandana','$2y$12$4/2FTnY.XNkIU3Wnkzc4LebbddMMvdilLKGFAzgqT1al4D1dRW0We','0ba6900a-c6bd-40ad-bd40-d335fbd42f7h','2024-10-31'),('Christopher','$2y$12$ekXVokjVwPDvmkJEQivSXuP0IKma.nc6O2qTQMHV3hkKy08XIoYFK','e10bfb2f-9cb9-4278-ac8c-952ee4428f02','2024-10-31'),('Dinekshi','$2y$12$ArLeMQMFxnDFAz21HV1JwuO62yrmeiRJBHRQszyreRspJ18yTZ7j2','4ca6900a-c6bd-40ad-bd40-d335fbd42f7z','2024-10-31'),('Gagani','$2y$12$QrhdtakX10FbX63Qf52.9OtZGJO3.zrDLLiklZVP3XBsnCxcd0f8K','1ca6900a-c6bd-40ad-bd40-d335fbd42f7w','2024-10-31'),('Gayan','$2y$12$lBxeWq9hL/sGW8CjO5nbFu.7SmrWSmvaIrAIZj3pHwEMf6c68kZkK','0ba6900a-c6bd-40ad-bd40-d335fbd42f7l','2024-10-31'),('Gayani','$2y$12$zxIGlr7opz19kvv6fiKEre0BGvEoAsJfhn.F7QuMxLE.GRkjxFPx.','0ba6900a-c6bd-40ad-bd40-d335fbd42f7b','2024-10-31'),('Gayantha','$2y$12$ypEEUEYyWCND2tSCx3BvY.lKvo/j/fLTT54hLbR2n9Qt0i3Lx121W','7ba6900a-c6bd-40ad-bd40-d335fbd42f7s','2024-10-31'),('Kamal','$2y$12$N96EgkyULlcaBh4AeDcJB.yxYI.5NjvA8E6Is4p9ua3m3pFzl39ny','0ba6900a-c6bd-40ad-bd40-d335fbd42f7a','2024-10-31'),('Kamali','$2y$12$cxIqEO36g7skDOkJU/brhuUU5mJDCiAFYsa78orSj0vM3hE1sDb0e','ad163c45-ce7b-422f-93d9-d72ab74af5ae','2024-10-31'),('Kasungi','$2y$12$db0bxlEOibz8igpPGZ01HuUZajjYc.PFUa4VqF1F5fZxBypTMzuuK','2ca6900a-c6bd-40ad-bd40-d335fbd42f7x','2024-10-31'),('Kevin','$2y$12$O0Z9atOd6u8a0.3khh1.nu9UwKdtev6O5/QhHZ5hfgePi5NJ3Z58i','1ba6900a-c6bd-40ad-bd40-d335fbd42f7m','2024-10-31'),('Kumara','$2y$12$LP2hS6xJzAnK3ADUbvgxzuYBSOyt9ZYUpd2.0jpG4GtH9hrWZ3lTW','0ba6900a-c6bd-40ad-bd40-d335fbd42f7f','2024-10-31'),('Kumari','$2y$12$zWRc1GY3xysLOze5p2J5heJds.ake38pDOZ29X8G6YcklA6OQTPVO','5ba6900a-c6bd-40ad-bd40-d335fbd42f7q','2024-10-31'),('Lahiru','$2y$12$BoDSvXKykwMbCFfQP4f/3.umZoyVL48fvx.UnFgwXuA4r5TCE6amK','0ba6900a-c6bd-40ad-bd40-d335fbd42f7c','2024-10-31'),('Mahesh','$2y$12$2Zi3Wuz48FeCy3nVJafc5OOMa2Cbq85hjzGjSy9HFeJgRy3.wouR2','0ba6900a-c6bd-40ad-bd40-d335fbd42f7i','2024-10-31'),('Maheshani','$2y$12$5RIUz51AAwtX/IqF3/jIqelpjcdVx8i5z4T55OQeindrBns/EfXFm','8ba6900a-c6bd-40ad-bd40-d335fbd42f7t','2024-10-31'),('Nayana','$2y$12$NobAWHAro8uiXZHiuy4wCuBZ2RMuVdJL/0ig7kMPOG5T1LOlohxnG','0ba6900a-c6bd-40ad-bd40-d335fbd42f8b','2024-10-31'),('Nimal','$2y$12$KS6Vn0n6hFYl2BcJ2IU3v.5DcjhdIylLYW.5LePbM/NyyC3jGvS0u','0ba6900a-c6bd-40ad-bd40-d335fbd42f7d','2024-10-31'),('Nimali','$2y$12$37rraq4Mcpk3bdXeKUpuo.Jn.BUoJqIsc3NLGzO.jKuGX9urLsWim','8c163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('Nuwanthika','$2y$12$gNcrrP0ipKQYbTXpOhsiEObSCI7OqT1lgHtkQ8iO46Qn/9kTAtMt.','3ca6900a-c6bd-40ad-bd40-d335fbd42f7y','2024-10-31'),('Ranjith','$2y$12$8lgwk3o0dKFeeJJGWH2pR.e0I20BVldX5kLvST33eX4WlCyyVTfV.','0ba6900a-c6bd-40ad-bd40-d335fbd42f7k','2024-10-31'),('Ranjitham','$2y$12$EWsRM50rRHLAnkAGaXStg.lAbJ4wEe0chRUJrmPiJTyYAzSOxocS2','6ba6900a-c6bd-40ad-bd40-d335fbd42f7r','2024-10-30'),('Ranjithma','$2y$12$UDVyV3UxqoyeV4KHOZInweUTLWxurkfDCPUu9aXM6L9u8ryHzDPQi','0ca6900a-c6bd-40ad-bd40-d335fbd42f7v','2024-10-30'),('Ruwan','$2y$12$tjpic2X/of9CAySWSXFDceBCLB9XB35U6w7WRPltBKtmB4uy0AuMu','0ba6900a-c6bd-40ad-bd40-d335fbd42f7g','2024-10-31'),('Ruwantha','$2y$12$HUIuAUI6HzzEp1ej2wmFn.MhYH2jF/7aQwE8BwPKEO3i58Qkbqlkm','3ba6900a-c6bd-40ad-bd40-d335fbd42f7o','2024-10-31'),('Saman','$2y$12$FOazYq48y55UnHWe2lNvqeJu9V41iwXUYGTKBj6z6LxTz14R1RcJm','0ba6900a-c6bd-40ad-bd40-d335fbd42f8d','2024-10-31'),('Shradha','$2y$12$I0Cfw7NPfYks8OZlEBgepehjMfEb5VeO/vGA7n3/NaCS/OeiBYekK','2ba6900a-c6bd-40ad-bd40-d335fbd42f7n','2024-10-31'),('Sunil','$2y$12$uviWpRC4N7v54qRvT0DfP.FIfJ2qB8vXOssZZJbxGLfEWVU5cj0Ve','0ba6900a-c6bd-40ad-bd40-d335fbd42f7e','2024-10-31'),('Sunili','$2y$12$1d.Vr5qfPaxK89Hdi99oDeRc0E9vS062qC3UlGo5XFJpiSzrAkwBy','9d163c45-ce7b-422f-93d9-d72abb4af5ae','2024-10-31'),('Sunimal','$2y$12$PrEzfHSJ3JI.UjObrt15COCCCjJpTdpil.XCSt4f4/CR8bWTVawoG','4ba6900a-c6bd-40ad-bd40-d335fbd42f7p','2024-10-31'),('Suresh','$2y$12$suZCkBeC4sLR3I6eeNJfVemEgy6j2TEWDTUO/2O1hvKg7a6rh6vKu','0ba6900a-c6bd-40ad-bd40-d335fbd42f7j','2024-10-31'),('Sureshan','$2y$12$2jDapJ0pUKH1DW/itDaJIeYbDG4eUTYxxzmKyJ5ppl7EixEYr9oia','9ba6900a-c6bd-40ad-bd40-d335fbd42f7u','2024-10-31'),('Susantha','$2y$12$aa5cP.65BwvAP9NHCtWPl.ThXEVl2Na8KBNDRC2JkgnrqqRG5BPo.','5ca6900a-c6bd-40ad-bd40-d335fbd42f7a','2024-10-31'),('Umesha','$2y$12$2eJiTmm0vv1BedMkT6TEuuBLOJ7OKJFU4GnECCJ0MgVuZoqZnEu/S','7364528d-ce36-4d7f-a0aa-7cd084c077f3','2024-10-30'),('Upuli','$2y$12$zn/gI8ldOjG/5zdBrw5t1Ok.neqioxNr928Ls2oKElKJmLegJNy.2','21b63c70-5c83-433b-9ab8-de8899d18854','2024-10-30');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -648,6 +645,7 @@ begin
 	join user_access using(username)
 	left join supervisor on (users.employee_id = supervisor.supervisor_id)
 	where user_access.is_supervisor = true
+    and user_access.is_admin = false
 	group by users.employee_id
 	order by count(supervisor.employee_id) asc
 	limit 1;
@@ -680,7 +678,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `add_employee`(
     in number_of_dependents int,
     in address varchar(40),
     in contact_number varchar(40),
-    in business_email varchar(40),
+    in p_business_email varchar(40),
     in p_job_title varchar(40),
 	in p_employee_status varchar(40),
     in dept_name varchar(40),
@@ -695,68 +693,61 @@ begin
     declare p_position_id int;
     declare p_department_id int;
     declare p_branch_id int;
-	declare p_pay_grade int;
+	  declare p_pay_grade int;
     declare p_annual_leave_count int;
     declare p_casual_leave_count int;
     declare p_maternity_leave_count int;
     declare p_nopay_leave_count int;
     declare p_leave_type_id int;
-    
-    select department_id
-    into p_department_id
-    from department
-    where department_name = dept_name;
 
-    select branch_id
-    into p_branch_id
-    from branch
-    where branch_name = brch_name;
+    declare exit handler for sqlexception
+    begin
+        rollback;
+        signal sqlstate '45000' set message_text = 'Error inserting employee data';
+    end;
     
-    select pay_grade
-    into p_pay_grade
-    from employee_position
-    where job_title = p_job_title
-    and employee_status = p_employee_status ;
-	
-    select annual_leave_count
-    into p_annual_leave_count
-    from leave_limit
-    where pay_grade = p_pay_grade;
+    start transaction;
     
-    select casual_leave_count
-    into p_casual_leave_count
-    from leave_limit
-    where pay_grade = p_pay_grade;
+    if exists (select 1 from employee where employee_nic = nic) then
+		select  'Error: Business email must be unique';
+        signal sqlstate '45000' set message_text = 'Error: NIC must be unique';
+    end if;
+
+    if exists (select 1 from employee where business_email = p_business_email) then
+		select  'Error: Business email must be unique';
+        signal sqlstate '45000' set message_text = 'Error: Business email must be unique';
+    end if;
     
-    select maternity_leave_count
-    into p_maternity_leave_count
-    from leave_limit
-    where pay_grade = p_pay_grade;
-    
-    select nopay_leave_count
-    into p_nopay_leave_count
-    from leave_limit
-    where pay_grade = p_pay_grade;
-    
-    select leave_type_id
-    into p_leave_type_id
-    from leave_limit
-    where pay_grade = p_pay_grade;
-    
+    if timestampdiff(YEAR, birthday, CURDATE()) < 18 then
+        select 'Error: Employee must be at least 18 years old';
+        signal sqlstate '45000' set message_text = 'Error: Employee must be at least 18 years old';
+    end if;
+
+    select department_id into p_department_id from department where department_name = dept_name;
+    select branch_id into p_branch_id from branch where branch_name = brch_name;
+    select pay_grade into p_pay_grade from employee_position where job_title = p_job_title and employee_status = p_employee_status;
+    select annual_leave_count into p_annual_leave_count from leave_limit where pay_grade = p_pay_grade;
+    select casual_leave_count into p_casual_leave_count from leave_limit where pay_grade = p_pay_grade;
+    select maternity_leave_count into p_maternity_leave_count from leave_limit where pay_grade = p_pay_grade;
+    select nopay_leave_count into p_nopay_leave_count from leave_limit where pay_grade = p_pay_grade;
+    select leave_type_id into p_leave_type_id from leave_limit where pay_grade = p_pay_grade;
+
     insert into employee (
-        employee_id, first_name,last_name, birthday, employee_nic, gender, marital_status, number_of_dependents,
-        address, contact_number,business_email,job_title,department_id, branch_id, profile_photo
-    ) 
-    values (
-        employee_id,first_name,last_name, birthday, nic, gender, marital_status, number_of_dependents,
-        address, contact_number,business_email, p_job_title,p_department_id, p_branch_id,p_profile_photo
-    );
-    insert into emergency_contact (emergency_contact_id,name, nic, address, emergency_contact_number)
-    values (employee_id,emergency_contact_name,emergency_contact_nic,emergency_contact_address, emergency_contact_number);
+        employee_id, first_name, last_name, birthday, employee_nic, gender, marital_status, number_of_dependents,
+        address, contact_number, business_email, job_title, department_id, branch_id, profile_photo) 
+    values (employee_id, first_name, last_name, birthday, nic, gender, marital_status, number_of_dependents,
+		address, contact_number, p_business_email, p_job_title, p_department_id, p_branch_id, p_profile_photo);
+        
+    insert into emergency_contact (emergency_contact_id, name, nic, address, emergency_contact_number)
+	values (employee_id, emergency_contact_name, emergency_contact_nic, emergency_contact_address, emergency_contact_number);
     
-    insert into leave_count_record (employee_id, leave_type_id, annual_leave_remaining, casual_leave_remaining, maternity_leave_remaining, nopay_leave_remaining)
-	values(employee_id, p_leave_type_id, p_annual_leave_count, p_casual_leave_count, p_maternity_leave_count, p_nopay_leave_count);
+    insert into leave_count_record (employee_id, leave_type_id, annual_leave_remaining, casual_leave_remaining,
+		maternity_leave_remaining, nopay_leave_remaining)
+    values (employee_id, p_leave_type_id, p_annual_leave_count, p_casual_leave_count, p_maternity_leave_count, p_nopay_leave_count);
     
+    commit;
+    select 'Employee added successfully.';
+
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -779,13 +770,42 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `add_organization`(
 )
 begin    
 	declare p_branch_id  varchar(40);
-    
+    declare exit handler for sqlexception
+    begin
+        rollback;
+        signal sqlstate '45000' set message_text = 'Error occur in leave request evaluation';
+    end;
 	select branch_id
     into p_branch_id
     from branch
     where branch_name = p_main_branch;
     
     insert into organization(field,main_branch_id) values(p_field,p_branch_id);
+    commit;
+    select 'Organization added successfully';
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `admins` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `admins`()
+begin
+    select employee.first_name,employee.last_name,employee.employee_id
+	from  users
+	join  employee using (employee_id)
+	join  user_access using (username)
+	where is_admin = true and is_supervisor = true;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -825,39 +845,66 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_leave_request`(
-    in p_employee_id varchar(40),
+    in p_employee_id varchar(40),   
     in p_leave_start_date date,
     in p_period_of_absence varchar(40),
     in p_reason_for_absence varchar(40),
     in p_type_of_leave varchar(40)
 )
 begin
-	declare curr_date date;
-    declare  p_supervisor_id varchar(40);
+    declare curr_date date;
+    declare p_supervisor_id varchar(40);
     declare leave_remaining varchar(40);
+    declare existing_request_id varchar(40);
+    declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while creating the leave request';
+    end;
     
-	SET curr_date = CURDATE();
+    start transaction;
+
+    set curr_date = curdate();
     
     select supervisor_id
-    into  p_supervisor_id
+    into p_supervisor_id
     from supervisor 
     where employee_id = p_employee_id;
     
-    
-    if p_type_of_leave = 'anuual' and (select annual_leave_remaining from leave_count_record where employee_id = p_employee_id)>p_period_of_absence then
-		    insert into leave_request (employee_id,request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
-			values(p_employee_id,curr_date, p_leave_start_date , p_period_of_absence, p_reason_for_absence,p_type_of_leave, 'P');
-    elseif p_type_of_leave = 'casual' and (select casual_leave_remaining from leave_count_record where employee_id = p_employee_id)>p_period_of_absence then
-			insert into leave_request (employee_id,request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
-			values(p_employee_id,curr_date, p_leave_start_date , p_period_of_absence, p_reason_for_absence,p_type_of_leave, 'P');
-    elseif p_type_of_leave = 'maternity' and (select maternity_leave_remaining from leave_count_record where employee_id = p_employee_id)>p_period_of_absence then
-			insert into leave_request (employee_id,request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
-			values(p_employee_id,curr_date, p_leave_start_date , p_period_of_absence, p_reason_for_absence,p_type_of_leave, 'P');
-	elseif p_type_of_leave = 'nopay' and (select nopay_leave_remaining from leave_count_record where employee_id = p_employee_id)>p_period_of_absence then
+    if (select count(employee_id) from leave_request where employee_id = p_employee_id)<10 then
+		if p_type_of_leave = 'annual' and (select annual_leave_remaining from leave_count_record where employee_id = p_employee_id) >= p_period_of_absence then
 			insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
-			values(p_employee_id,curr_date, p_leave_start_date , p_period_of_absence, p_reason_for_absence,p_type_of_leave, 'P');
-    end if;
-	
+			values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
+			select 'Sucessfully create leave request' as message;
+		elseif p_type_of_leave = 'casual' and (select casual_leave_remaining from leave_count_record where employee_id = p_employee_id) >= p_period_of_absence then
+			insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
+			values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
+			select 'Sucessfully create leave request' as message;
+		elseif p_type_of_leave = 'maternity' and (select maternity_leave_remaining from leave_count_record where employee_id = p_employee_id) >= p_period_of_absence then
+			insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
+			values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
+			select 'Sucessfully create leave request' as message;
+		elseif p_type_of_leave = 'nopay' and (select nopay_leave_remaining from leave_count_record where employee_id = p_employee_id) >= p_period_of_absence then
+			insert into leave_request (employee_id, request_date, leave_start_date, period_of_absence, reason_for_absence, type_of_leave, request_status)
+			values (p_employee_id, curr_date, p_leave_start_date, p_period_of_absence, p_reason_for_absence, p_type_of_leave, 'P');
+			select 'Sucessfully create leave request' as message;
+		else
+			 select 'Insufficient leave balance for selected category' as message;
+		end if;
+		 if exists (select 1 from leave_request where employee_id = p_employee_id and (request_status = 'A' or request_status = 'R')
+					and  date_add( p_leave_start_date, interval p_period_of_absence day) < current_date() ) then
+			select leave_request_id into existing_request_id 
+			from leave_request 
+			where employee_id = p_employee_id and (request_status = 'A' or request_status = 'R')
+			limit 1;
+			
+			delete from leave_request where leave_request_id = existing_request_id;
+		end if;
+	else 
+		select 'limit exceed try again later' as message;
+	end if;
+    
+    commit;
 
 end ;;
 DELIMITER ;
@@ -876,27 +923,47 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `create_user_account`(
-    in username varchar(40),
+    in p_username varchar(40),
     in password varchar(255),
     in p_employee_id varchar(40),
     in access_level varchar(40)
 )
 begin
+    declare exit handler for sqlexception
+    begin
+        rollback;
+        signal sqlstate '45000' set message_text = 'Error creating user account';
+    end;
+    
+    start transaction;
+    
+    if exists (select 1 from users where p_username = username) then
+		select  'Error: your Username is already taken , try another one';
+        signal sqlstate '45000' set message_text = 'Error: Username must be unique try another one';
+    end if;
+    
     if access_level = 'Admin' then
         insert into users (username, password, employee_id)
-		values (username, password, p_employee_id);
-        insert into user_access (username, is_admin,is_supervisor)values (username, true,true);
+		values (p_username, password, p_employee_id);
+        insert into user_access (username, is_admin, is_supervisor) values (p_username, true, true);
+        
     elseif access_level = 'Supervisor' then
-		insert into users (username, password, employee_id)
-		values (username, password, p_employee_id);
-        insert into user_access (username, is_admin,is_supervisor)values (username, false,true);
-        insert into supervisor(supervisor_id,employee_id,date) values((select employee_id from employee where job_title = 'HR assistent'), p_employee_id,curdate());
+        insert into users (username, password, employee_id)
+		values (p_username, password, p_employee_id);
+        insert into user_access (username, is_admin, is_supervisor) values (p_username, false, true);
+        insert into supervisor(supervisor_id, employee_id, date) 
+		values((select employee_id from employee where job_title = 'HR assistent'), p_employee_id, curdate());
+        
     else
         insert into users (username, password, employee_id)
-		values (username, password, p_employee_id);
-        insert into user_access (username, is_admin,is_supervisor)values (username,false,false);
-        insert into supervisor (supervisor_id,employee_id,date)values(generate_supervisor(),p_employee_id,curdate());
+		values (p_username, password, p_employee_id);
+        insert into user_access (username, is_admin, is_supervisor) values (p_username, false, false);
+        insert into supervisor (supervisor_id, employee_id, date)
+		values (generate_supervisor(), p_employee_id, curdate());
     end if;
+    
+    commit;
+    select 'User account create successfully';
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -920,7 +987,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `customize_employee_attribute`(
 )
 begin    
 	declare p_custom_attribute_id  varchar(40);
-    
+
 	select custom_employee_record_id
     into p_custom_attribute_id
     from custom_employee_record
@@ -951,6 +1018,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `customize_employee_record`(
 )
 begin    
 	declare p_organization_id  varchar(40);
+    declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while adding customize employee record';
+    end;
+
+    start transaction;
     
 	select organization_id
     into p_organization_id
@@ -960,6 +1034,10 @@ begin
     insert into custom_employee_record(custom_attribute_name) values(p_custom_attribute_name);
     update organization set  custom_employee_record_id = (select custom_employee_record_id from custom_employee_record order by custom_employee_record_id desc limit 1)
     where organization_id =p_organization_id;
+    
+    commit;
+    select 'customize employee record added sucessfully';
+    
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -981,9 +1059,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_employee`(
     in d_employee_id varchar(40)
 )
 begin
-	if (select is_admin from user_access where username = (select username from users where employee_id= p_employee_id limit 1)) = true then
-		delete from employee where employee_id = d_employee_id;
-	end if;
+    declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while deleting the employee';
+    end;
+
+    start transaction;
+    
+    if (select is_admin from user_access where username = (select username from users where employee_id = p_employee_id limit 1)) = true then
+        delete from employee where employee_id = d_employee_id;
+    end if;
+
+    commit;
+    select 'Employee delete successfully';
+
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1004,7 +1094,40 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_request`(
     in p_leave_id varchar(40)
 )
 begin    
+	declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while deleting leave request';
+    end;
+    
+    start transaction;
 	delete from leave_request where leave_request_id =p_leave_id and request_status = 'P';
+    commit;
+	select 'Leave request delete successfully';
+    
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `employees` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `employees`()
+begin
+    select employee.first_name,employee.last_name
+	from  users
+	join  employee using (employee_id)
+	join  user_access using (username)
+	where is_admin = false and is_supervisor = false;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1125,26 +1248,21 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `employee_leave_details_for_admin`()
-BEGIN
-    SELECT 
-        leave_request.leave_request_id,
-        employee.employee_id,
-        employee.first_name,
-        employee.last_name,
-        employee.gender,
-        leave_request.request_status,
-        leave_request.leave_start_date,
-        leave_request.period_of_absence,
-        leave_request.request_date,
-        leave_request.type_of_leave,
-        leave_request.reason_for_absence
-    FROM 
-        employee
-    JOIN 
-        leave_request USING (employee_id)
-    ORDER BY 
-        request_status;
-END ;;
+begin
+    select  leave_request.leave_request_id, 
+			employee.employee_id,
+            employee.first_name,
+            employee.last_name,
+            leave_request.request_status,
+            leave_request.leave_start_date,
+            leave_request.period_of_absence,
+            leave_request.request_date,
+            leave_request.type_of_leave,
+            leave_request.reason_for_absence
+	from  employee
+	join  leave_request using (employee_id)
+    order by request_status;
+end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1172,7 +1290,7 @@ begin
         values (generate_employee_of_the_month(), year(curdate()), month(curdate()));
     end if;
     
-    select employee.first_name, employee.last_name, employee_of_the_month.year, employee_of_the_month.month
+    select employee.first_name,employee.last_name
     from employee_of_the_month
     left join employee using (employee_id)
     where employee_of_the_month.year = year(curdate()) 
@@ -1207,6 +1325,30 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `employee_team_for_supervisor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `employee_team_for_supervisor`(
+    in p_supervisor_id varchar(40)
+)
+begin    
+    select employee.employee_id,employee.first_name,employee.last_name,employee.gender
+    from supervisor
+    join employee  using (employee_id)
+    where supervisor.supervisor_id =p_supervisor_id;
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `evaluate_leave_request` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1226,6 +1368,13 @@ begin
     declare no_of_days int;
     declare p_employee_id varchar(40);
     
+    declare exit handler for sqlexception
+    begin
+        rollback;
+        signal sqlstate '45000' set message_text = 'Error occur in leave request evaluation';
+    end;
+    
+    start transaction;
 	select employee_id
     into p_employee_id
     from leave_request
@@ -1265,6 +1414,9 @@ begin
         set nopay_leave_remaining = nopay_leave_remaining - no_of_days
         where employee_id = p_employee_id;
     end if;
+    commit;
+    select 'Successfully evaluate leave request';
+    
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1294,6 +1446,32 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_employee_other_details` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_employee_other_details`(
+    in p_employee_id varchar(40)
+)
+begin
+    if exists (select 1 from custom_attribute where employee_id = p_employee_id) then
+        select custom_attribute.value, custom_employee_record.custom_attribute_name
+        from custom_attribute
+        join custom_employee_record using (custom_attribute_id)
+        where custom_attribute.employee_id = p_employee_id;
+    end if;
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `get_fulltime_employee_count_presentage` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1310,10 +1488,34 @@ begin
   select count(employee.employee_id) 
   into count_of_employee
   from employee ;
-  select count(employee.employee_id) as full_time_employee_count , count(employee.employee_id)/count_of_employee as full_time_employee_presentage
+  select count(employee.employee_id) as amount , count(employee.employee_id)/count_of_employee as value
   from employee 
   inner join employee_position using(job_title)
   where employee_position.employee_status = 'full-time';
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_leaves` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_leaves`(
+    in p_leave_request_id varchar(40)
+)
+begin
+	select employee.first_name,employee.last_name,employee.gender,leave_request.request_date,leave_request.leave_start_date,leave_request.period_of_absence,leave_request.reason_for_absence,leave_request.type_of_leave,leave_request.request_status
+    from employee
+    right join leave_request using(employee_id)
+    where leave_request_id =p_leave_request_id;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1332,7 +1534,11 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_leave_count`()
 begin
-  select count(leave_request_id)
+  declare count_of_employee int;
+  select count(employee.employee_id) 
+  into count_of_employee
+  from employee ;
+  select count(leave_request_id) as amount ,count(leave_request_id)/count_of_employee as value
   from leave_request 
   where request_status = 'A'  
   and (leave_start_date <= current_date())
@@ -1359,7 +1565,7 @@ begin
   select count(employee.employee_id) 
   into count_of_employee
   from employee ;
-  select count(employee.employee_id) as part_time_employee_count , count(employee.employee_id)/count_of_employee as part_time_employee_presentage
+  select count(employee.employee_id) as amount , count(employee.employee_id)/count_of_employee as value
   from employee 
   inner join employee_position using(job_title)
   where employee_position.employee_status = 'part-time';
@@ -1441,6 +1647,43 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `leave_request_Pending_list` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `leave_request_Pending_list`(
+	in p_supervisor_id varchar(40)
+    )
+begin
+    select  
+		leave_request.leave_request_id, 
+		leave_request.employee_id, 
+		leave_request.request_date, 
+        leave_request.leave_start_date,  
+        leave_request.period_of_absence, 
+        leave_request.reason_for_absence,
+        leave_request.type_of_leave,
+        leave_request.request_status,
+        employee.first_name,
+        employee.last_name,
+        employee.gender
+		from  leave_request
+		left join  employee using (employee_id)
+        left join supervisor using (employee_id)
+		where leave_request.request_status = 'P'
+        and supervisor.supervisor_id = p_supervisor_id;
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `login_update` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1455,9 +1698,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `login_update`(
     in p_username varchar(40)
 )
 begin    
+	declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while updating login time';
+    end;
 	update users
     set last_login_date = current_date()
     where username = p_username;
+    commit;
+    select 'login time update sucessfully';
+    
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1495,6 +1746,47 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `searching_employees` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `searching_employees`(
+    in p_employee_id varchar(40),
+    in p_first_name varchar(40),
+    in p_last_name varchar(40),
+    in p_gender varchar(40),
+    in p_marital_status varchar(40),
+    in p_job_title varchar(40),
+    in dept_name varchar(40),
+    in brch_name varchar(40)
+)
+begin
+	declare p_department_id int;
+    declare p_branch_id int;
+	select department_id into p_department_id from department where department_name = dept_name;
+    select branch_id into p_branch_id from branch where branch_name = brch_name;
+    select * 
+    from employee
+    where (p_employee_id is null or employee_id = p_employee_id)
+      and (p_first_name is null or first_name = p_first_name)
+      and (p_last_name is null or last_name = p_last_name)
+      and (p_gender is null or gender = p_gender)
+      and (p_marital_status is null or marital_status = p_marital_status)
+      and (p_job_title is null or job_title = p_job_title)
+      and (p_department_id is null or department_id = p_department_id)
+      and (p_branch_id is null or branch_id = p_branch_id);
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `select_employee_details` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1505,14 +1797,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `select_employee_details`(IN p_employee_id VARCHAR(40))
-BEGIN
-    SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `select_employee_details`(
+    in p_employee_id varchar(40)
+)
+begin
+    select
         employee.employee_id,
         employee.first_name,
         employee.last_name,
         employee.birthday,
-        employee.employee_nic AS 'nic',
+        employee.employee_nic as nic,
         employee.gender,
         employee.marital_status,
         employee.number_of_dependents,
@@ -1523,30 +1817,23 @@ BEGIN
         employee_position.employee_status,
         department.department_name,
         branch.branch_name,
-        employee.profile_photo,
-        emergency_contact.name AS 'emergency_contact_name',
-        emergency_contact.nic AS 'emergency_contact_nic',
-        emergency_contact.address AS 'emergency_contact_address',
-        emergency_contact.emergency_contact_number,
+		employee.profile_photo,
+        emergency_contact.name as emergency_contact_name,
+        emergency_contact.nic as emergency_contact_nic,
+        emergency_contact.address as emergency_contact_address,
+        emergency_contact.emergency_contact_number as emergency_contact_number,
         leave_count_record.annual_leave_remaining,
         leave_count_record.casual_leave_remaining,
         leave_count_record.maternity_leave_remaining,
         leave_count_record.nopay_leave_remaining
-    FROM
-        employee
-    LEFT JOIN
-        department USING (department_id)
-    LEFT JOIN
-        branch USING (branch_id)
-    LEFT JOIN
-        leave_count_record USING (employee_id)
-    LEFT JOIN
-        emergency_contact ON employee.employee_id = emergency_contact.emergency_contact_id
-    LEFT JOIN
-        employee_position USING (job_title)
-    WHERE
-        employee.employee_id = p_employee_id;
-END ;;
+    from employee 
+    left join department using(department_id)
+    left join branch using (branch_id)
+    left join leave_count_record using (employee_id)
+    left join emergency_contact on employee.employee_id = emergency_contact.emergency_contact_id
+    left join employee_position using (job_title)
+    where employee.employee_id = p_employee_id;
+end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1571,6 +1858,52 @@ begin
     left join supervisor using (employee_id)
     where supervisor.supervisor_id = p_supervisor_id
 	and leave_request.request_status = 'P';
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `supervisors` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `supervisors`()
+begin
+    select employee.first_name,employee.last_name
+	from  users
+	join  employee using (employee_id)
+	join  user_access using (username)
+	where is_admin = false and is_supervisor = true;
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `supervisors_details` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `supervisors_details`()
+begin    
+	select employee.employee_id,employee.first_name,employee.last_name
+	from  users
+	join  employee using (employee_id)
+	join  user_access using (username)
+	where is_admin = false and is_supervisor = true;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1614,6 +1947,14 @@ begin
     declare p_branch_id int;
     declare p_pay_grade int;
     declare p_leave_type_id int;
+
+    declare exit handler for sqlexception 
+    begin
+        rollback;
+        select 'An error occurred while updating the employee';
+    end;
+
+    start transaction;
 
     select department_id
     into p_department_id
@@ -1661,6 +2002,9 @@ begin
         address = p_emergency_contact_address,
         emergency_contact_number = p_emergency_contact_number
     where emergency_contact_id = p_employee_id;
+
+    commit;
+	select 'Successfully updated employee details';
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1821,4 +2165,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-29 17:18:42
+-- Dump completed on 2024-10-31  3:34:43

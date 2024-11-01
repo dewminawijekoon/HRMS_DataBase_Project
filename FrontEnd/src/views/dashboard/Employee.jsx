@@ -3,7 +3,6 @@ import { Row, Col, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import useTokenAuth from '../../auth/TokenAuth.jsx';
-import { toast } from "sonner";
 
 const birthdaylist = [
   { name: 'Bhanuka Botheju', dept: 'HR' },

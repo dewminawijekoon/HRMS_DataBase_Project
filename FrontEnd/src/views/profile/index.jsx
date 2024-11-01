@@ -125,11 +125,14 @@ const Profile = (props) => {
       if (response.ok) {
         const data = await response.json();
         console.log('update done'); 
+        toast.success('Account updated successfully!')
       } else {
         console.error('update failed:', response.status);
+        toast.error('update failed:', response.status);
       }
     } catch (error) {
       console.log('Error occurred:', error);
+      toast.error('Error occurred:', error);
       setErrors({ submit: error.message });
     } finally {
       setIsSubmitting(false);
